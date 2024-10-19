@@ -1,10 +1,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputAction.h"
 #include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
-#include "EnhancedInputSubsystems.h"
+#include "Math/Vector2D.h"
 #include "UhuPlayerController.generated.h"
+
+class UInputMappingContext;
+class UUhuChatWindow;
 
 UCLASS()
 class DRONESCAPE_API AUhuPlayerController : public APlayerController
@@ -14,50 +18,64 @@ class DRONESCAPE_API AUhuPlayerController : public APlayerController
 public:
     AUhuPlayerController();
 
-protected:
-    virtual void BeginPlay() override;
+    virtual void Tick(float DeltaTime) override;
     virtual void SetupInputComponent() override;
 
-    // Umbenennen von ControlRotation zu CustomControlRotation
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
-    FRotator CustomControlRotation; 
+protected:
+    virtual void BeginPlay() override;
+
+    void LookAround(const FInputActionValue& Value);
+    void GetCursorPosition(FVector2D& OutCursorPosition);
 
 private:
-    // Input actions
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
-    UInputAction* Ia_MoveForward;
+    UFUNCTION(BlueprintCallable, Category = "Input")
+    void MoveForward(const FInputActionValue& InputActionValue);
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
-    UInputAction* Ia_MoveRight;
+    UFUNCTION(BlueprintCallable, Category = "Input")
+    void MoveRight(const FInputActionValue& InputActionValue);
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
-    UInputAction* Ia_Look;
+    UFUNCTION(BlueprintCallable, Category = "Input")
+    void Jump();
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
-    UInputAction* Ia_Jump;
+    UFUNCTION(BlueprintCallable, Category = "Input")
+    void StartSprinting();
 
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
-    UInputAction* Ia_Sprint;
+    UFUNCTION(BlueprintCallable, Category = "Input")
+    void StopSprinting();
+    
+    UFUNCTION(BlueprintCallable, Category = "Input")
+    void StartLooking(const FInputActionValue& Value);
 
-    // Input mapping context
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
+    UFUNCTION(BlueprintCallable, Category = "Input")
+    void StopLooking();
+    
+    // Input Mapping Context
+    UPROPERTY(EditDefaultsOnly, Category = "Input")
     UInputMappingContext* InputMappingContext;
 
-    // Sprinting state
-    bool bIsSprinting;
+    // Input
+    UPROPERTY(EditDefaultsOnly, Category = "Input")
+    UInputAction* Ia_MoveForward;
 
-    // Chat window reference
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowPrivateAccess = "true"))
-    TSubclassOf<class UUhuChatWindow> ChatWindowClass;
+    UPROPERTY(EditDefaultsOnly, Category = "Input")
+    UInputAction* Ia_MoveRight;
 
-    UPROPERTY()
+    UPROPERTY(EditDefaultsOnly, Category = "Input")
+    UInputAction* Ia_Jump;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Input")
+    UInputAction* Ia_Sprint;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Input")
+    UInputAction* Ia_Look;
+    
+    // Chat window UI
+    UPROPERTY(EditDefaultsOnly, Category = "UI")
+    TSubclassOf<UUhuChatWindow> ChatWindowClass;
+
     UUhuChatWindow* ChatWindow;
 
-    // Input handling functions
-    void MoveForward(const FInputActionValue& InputActionValue);
-    void MoveRight(const FInputActionValue& InputActionValue);
-    void Look(const FInputActionValue& Value);
-    void Jump();
-    void StartSprinting();
-    void StopSprinting();
+    bool bIsSprinting; // Flag for sprinting
+    bool bIsLooking; // Flag for looking
+
 };

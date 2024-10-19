@@ -7,11 +7,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a482cabb-5801-4cb7-9e95-369d10ea330d" name="Changes" comment="" />
+    <list default="true" id="a482cabb-5801-4cb7-9e95-369d10ea330d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Controllers/BP_PlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Controllers/BP_PlayerController.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/IMC_Input.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/IMC_Input.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_Look.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/InputActions/IA_Look.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_MoveForward.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/InputActions/IA_MoveForward.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/Blank.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Blank.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MykeUhu&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:MykeUhu/DroneScape001.git&quot;,
+    &quot;accountId&quot;: &quot;f88abc0d-4f93-432c-a647-35b858558056&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -26,6 +59,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Uproject.DroneScape.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -128,7 +162,10 @@
       <workItem from="1729256902516" duration="343000" />
       <workItem from="1729257408588" duration="417000" />
       <workItem from="1729257841006" duration="4349000" />
-      <workItem from="1729318386101" duration="22701000" />
+      <workItem from="1729318386101" duration="26519000" />
+      <workItem from="1729345766632" duration="555000" />
+      <workItem from="1729346345660" duration="3000" />
+      <workItem from="1729346364630" duration="13825000" />
     </task>
     <servers />
   </component>

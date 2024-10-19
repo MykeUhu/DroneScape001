@@ -30,6 +30,7 @@ public class DroneScape : ModuleRules
 			"Sockets"                      // Für Netzwerksockets und Kommunikation
 		});
 
+
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
 		// Uncomment if you are using Slate UI
