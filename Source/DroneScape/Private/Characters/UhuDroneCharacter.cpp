@@ -1,34 +1,50 @@
-// Copyright by MykeUhu
-
-
 #include "Characters/UhuDroneCharacter.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "AIController.h"
+#include "Engine/World.h"
+#include "Actor/Drone/DockingStation.h"
 
 // Sets default values
 AUhuDroneCharacter::AUhuDroneCharacter()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = true;
 
+    // Initialize components
+    CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("CapsuleComponent"));
+    RootComponent = CapsuleComponent;
+
+    DroneMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DroneMesh"));
+    DroneMesh->SetupAttachment(RootComponent);
+
+    // Initialize variables
+    FuelConsumptionRate = 1.0f; // Example value
+    CurrentFuelLevel = 100.0f;  // Example value
+    DockingStationLocation = FVector::ZeroVector; // Default location
 }
 
 // Called when the game starts or when spawned
 void AUhuDroneCharacter::BeginPlay()
 {
-	Super::BeginPlay();
-	
+    Super::BeginPlay();
 }
 
 // Called every frame
 void AUhuDroneCharacter::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
-
+    Super::Tick(DeltaTime);
 }
 
-// Called to bind functionality to input
-void AUhuDroneCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+// Ping Docking Station to get location
+void AUhuDroneCharacter::RequestDockingStationLocation()
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+    if (DockingStationReference)
+    {
+        ADockingStation* DockingStation = Cast<ADockingStation>(DockingStationReference);
+        if (DockingStation)
+        {
+            DockingStationLocation = DockingStation->PingDrone();
+            UE_LOG(LogTemp, Warning, TEXT("DockingStation antwortet mit Position: %s"), *DockingStationLocation.ToString());
+        }
+    }
 }
-

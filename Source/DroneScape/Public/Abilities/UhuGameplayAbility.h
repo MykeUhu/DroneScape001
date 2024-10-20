@@ -13,5 +13,6 @@ UCLASS()
 class DRONESCAPE_API UUhuGameplayAbility : public UGameplayAbility
 {
 	GENERATED_BODY()
+
 	
 };
