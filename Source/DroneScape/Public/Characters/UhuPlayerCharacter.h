@@ -3,10 +3,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "UhuPlayerCharacter.generated.h"
-
-class USpringArmComponent;
-class UCameraComponent;
 
 UCLASS()
 class DRONESCAPE_API AUhuPlayerCharacter : public ACharacter
@@ -16,24 +14,19 @@ class DRONESCAPE_API AUhuPlayerCharacter : public ACharacter
 public:
 	AUhuPlayerCharacter();
 
-	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-
-	// Movement
-	void StartSprinting() const;
-	void StopSprinting() const;
-
-protected:
 	virtual void BeginPlay() override;
 
+	// Kameraperspektive wechseln (wird von AUhuPlayerController aufgerufen)
+	void SwitchCamera();
 
 private:
-	float SprintMultiplier = 1.5f; // Beispielwert für Sprintgeschwindigkeit
-
-	// Camera components
+	// Kamera-Komponenten
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	USpringArmComponent* SpringArm;
+	TObjectPtr<UCameraComponent> FirstPersonCamera;
 
 	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	UCameraComponent* Camera;
-	
+	TObjectPtr<USpringArmComponent> SpringArm;  // SpringArm für Third-Person
+
+	// ViewSettings
+	bool bIsThirdPersonView;  // Flag für die aktuelle Kameraperspektive
 };

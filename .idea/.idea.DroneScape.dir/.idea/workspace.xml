@@ -9,13 +9,18 @@
   <component name="ChangeListManager">
     <list default="true" id="a482cabb-5801-4cb7-9e95-369d10ea330d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ControlRig/Characters/Mannequins/Meshes/SKM_Quinn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ControlRig/Characters/Mannequins/Meshes/SKM_Quinn.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ControlRig/Characters/Mannequins/Meshes/SK_Mannequin.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ControlRig/Characters/Mannequins/Meshes/SK_Mannequin.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Controllers/BP_PlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Controllers/BP_PlayerController.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Game/GameMode/BP_GameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/GameMode/BP_GameMode.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Input/IMC_Input.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/IMC_Input.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_Look.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/InputActions/IA_Look.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_MoveForward.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/InputActions/IA_MoveForward.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_Jump.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_MoveForward.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_MoveRight.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/InputActions/IA_Sprint.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/Blank.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Blank.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" afterDir="false" />
@@ -57,6 +62,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Uproject.DroneScape.executor&quot;: &quot;Debug&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -165,7 +171,9 @@
       <workItem from="1729318386101" duration="26519000" />
       <workItem from="1729345766632" duration="555000" />
       <workItem from="1729346345660" duration="3000" />
-      <workItem from="1729346364630" duration="13825000" />
+      <workItem from="1729346364630" duration="20721000" />
+      <workItem from="1729401641546" duration="2497000" />
+      <workItem from="1729404589797" duration="7859000" />
     </task>
     <servers />
   </component>
