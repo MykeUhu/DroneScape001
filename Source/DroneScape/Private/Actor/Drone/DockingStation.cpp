@@ -1,38 +1,71 @@
 #include "Actor/Drone/DockingStation.h"
+#include "Characters/UhuDroneCharacter.h"
+#include "EngineUtils.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/SceneComponent.h"
 
-// Konstruktor
+// Sets default values
 ADockingStation::ADockingStation()
 {
-	// Erstelle eine neue SceneComponent als Root-Komponente
+	PrimaryActorTick.bCanEverTick = true;
+
+	// Initialize components
 	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
 	RootComponent = SceneRoot;
 
-	// Erstelle das Mesh für die Docking-Station
 	DockingMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DockingMesh"));
 	DockingMesh->SetupAttachment(RootComponent);
 }
 
-// BeginPlay wird aufgerufen, wenn das Spiel startet oder der Actor aktiviert wird
+// Called when the game starts or when spawned
 void ADockingStation::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Start pinging the Drone
+	PingDrone();
 }
 
-// Tick wird einmal pro Frame aufgerufen
+// Function to ping the Drone until it responds
+void ADockingStation::PingDrone()
+{
+	// Check if the Drone has already been found
+	if (bIsDroneFound)
+	{
+		return; // Exit if already found
+	}
+
+	// Search for the Drone
+	for (TActorIterator<AUhuDroneCharacter> It(GetWorld()); It; ++It)
+	{
+		AUhuDroneCharacter* Actor = *It;
+		if (Actor)
+		{
+			DroneReference = Actor;
+			bIsDroneFound = true; // Set flag to true
+			UE_LOG(LogTemp, Warning, TEXT("Drone found."));
+
+			// Respond to the Drone's signal
+			FVector DroneLocation = RespondToSignal();
+			UE_LOG(LogTemp, Warning, TEXT("Drone location: %s"), *DroneLocation.ToString());
+
+			return; // Exit after finding the Drone
+		}
+	}
+
+	// If not found, continue pinging after a delay
+	GetWorld()->GetTimerManager().SetTimer(PingTimerHandle, this, &ADockingStation::PingDrone, 1.0f, false);
+}
+
+// Responds to the request for the Drone's location
+FVector ADockingStation::RespondToSignal() const
+{
+	// Return the location of the Docking Station
+	return GetActorLocation(); // Or a specific location if needed
+}
+
+// Called every frame
 void ADockingStation::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-}
-
-// Funktion, um die Drohne zu pingen und ihre Position zurückzugeben
-FVector ADockingStation::PingDrone()
-{
-	// Hier könnte man logische Überprüfungen einfügen
-	return GetCurrentLocation(); // Gibt die aktuelle Position der Docking-Station zurück
-}
-
-// Gibt die aktuelle Position der Docking-Station zurück
-FVector ADockingStation::GetCurrentLocation() const
-{
-	return GetActorLocation(); // Gibt den aktuellen Standort der Docking-Station zurück
 }

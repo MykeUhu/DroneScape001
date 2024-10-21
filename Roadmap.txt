@@ -1,0 +1,81 @@
+Roadmap für DroneScape: Ein Steampunk-Survival-Spiel
+Phase 1: Grundlagenentwicklung (1-3 Monate)
+Implementierung der Bewegungssysteme
+
+Player Movement: Entwicklung des Bewegungsstils für den Waschbären-Charakter.
+Drone Controls: Einführung der Steuerung der Drohne, einschließlich manueller und automatischer Rückkehr.
+Umgebungserstellung
+
+Kuppel-Design: Gestaltung der ersten Kuppel als Hauptbasis des Spielers.
+Ressourcen-Platzierung: Festlegung der Startressourcen wie Wasser, Pflanzen und Metalle.
+Einführung der Grundmechanik
+
+Wasserauffangsystem: Implementierung eines Außenkondensators zur Wassergewinnung.
+Nahrungssystem: Integration von pflanzlichen und fischbasierten Nahrungsquellen.
+Crafting-System: Erstellung eines Handwerksbuchs für Ressourcenmanagement.
+Phase 2: Gameplay-Features (4-6 Monate)
+Erweiterung des Crafting-Systems
+
+Blueprint-Implementierung: Erstellen von Bauplänen für Kuppel-Erweiterungen.
+Ressourcenmanagement: Implementierung eines Lagerhaussystems für gesammelte Materialien.
+Drohnen-Upgrades
+
+Upgrade-Mechanik: Entwicklung eines Systems zur Verbesserung der Drohne (z. B. Rotoren, Traglast).
+Erkundungstouren: Die Drohne kann durch den Nebel fliegen und Ressourcen finden.
+Einführung von Quests und Wettbewerben
+
+Wettbewerbe: Hindernisparcours für Drohnen mit In-Game-Belohnungen.
+Quests: Erstellung von mission-basierten Inhalten für die Spieler.
+Phase 3: Feinschliff und Feedback (7-9 Monate)
+Testing und Feedback
+
+Alpha-Test: Durchführung von Tests mit einer begrenzten Spielergruppe, um Feedback zu erhalten.
+Iterative Verbesserungen: Anpassungen und Verbesserungen basierend auf dem Feedback der Alpha-Tester.
+Erweiterung der Kuppel
+
+Neues Design: Einführung neuer Designoptionen und Ausbaustufen für die Kuppel.
+Sicherheitsmechanismen: Hinzufügen von Funktionen zum Schutz vor Umweltgefahren.
+Phase 4: Endgame-Content (10-12 Monate)
+Endgame-Mechaniken
+
+Fortgeschrittene Technologien: Einführung von High-Tech-Upgrades für die Drohne.
+Ackerbau: Implementierung eines vollständigen Agrarsystems für die Kuppel.
+Wettbewerbsmechaniken
+
+Community-Herausforderungen: Monatliche Events, bei denen Spieler ihre Fähigkeiten testen und Belohnungen gewinnen können.
+Vorbereitung auf den Launch
+
+Marketing-Strategie: Erstellung von Werbematerialien und Social-Media-Inhalten.
+Kickstarter-Kampagne: Launch der Kickstarter-Kampagne mit Ziel von 14,99 $.
+Asset für die Kickstarter-Kampagne
+Titel: DroneScape: Ein Steampunk-Survival-Spiel
+Genre: Survival, Crafting, Steampunk
+Platform: PC (Steam)
+Kernfeatures:
+Steampunk-Ästhetik mit einem sprechenden Waschbären als Protagonisten.
+Einzigartiges Ressourcenmanagement mit Wasserauffangsystemen und Nahrungsproduktion.
+Drohnensteuerung für Erkundungen und Ressourcensuche.
+Wettbewerbsbasierte Elemente mit Hindernisparcours.
+Erweiterbare Kuppeln für persönliche und strategische Spielentwicklung.
+Strategische Vorgehensweise
+Netzwerk aufbauen
+
+Trete Community-Foren und Social-Media-Gruppen bei, um Gleichgesinnte zu finden.
+Engagiere dich in Discord-Servern oder Reddit-Communities für Spieleentwickler und Steampunk-Enthusiasten.
+Sponsoren gewinnen
+
+Suche nach lokalen oder Online-Unterstützungen von Gaming-Communities, um die ersten Ideen und Designs zu präsentieren.
+Stelle deine Ideen auf Plattformen wie IndieGoGo oder Patreon vor, um frühe Unterstützer zu gewinnen.
+Feedback einholen
+
+Erstelle Prototypen und lasse diese von Freunden oder in Foren testen, um konstruktives Feedback zu erhalten.
+Nutze Umfragen, um die Meinungen potenzieller Spieler zu sammeln und das Spiel entsprechend anzupassen.
+Marketing-Strategie
+
+Beginne mit der Erstellung einer starken Online-Präsenz (Website, Social Media, Entwickler-Blogs).
+Veröffentliche regelmäßige Updates über den Entwicklungsfortschritt, um das Interesse hoch zu halten.
+Bereite ein ansprechendes Video für die Kickstarter-Kampagne vor, das das Gameplay und die einzigartigen Funktionen hervorhebt.
+Ziele für Kickstarter festlegen
+
+Setze ein realistisches Finanzierungsziel und plane Stretch Goals, um das Interesse zu fördern.
+Überlege dir interessante Belohnungen für Unterstützer (z. B. exklusive In-Game-Items, Zugang zu Alpha/Beta-Tests, Merchandising).

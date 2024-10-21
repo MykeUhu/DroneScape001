@@ -15,15 +15,11 @@ public class DroneScape : ModuleRules
 			"InputCore",
 			"HeadMountedDisplay",          // Für VR/AR oder Kopfbedeckungen (VR-Headset z.B.)
 			"EnhancedInput",               // Für das Enhanced Input System
-			"AIModule",                    // Für AI und NPC Steuerung
 			"GameplayAbilities",           // Für das Gameplay Ability System (GAS)
 			"GameplayTags",                // Für Gameplay Tags im GAS
-			"GameplayTasks",               // Für Gameplay Tasks im GAS
 			"UMG",                         // Für UI und Widgets (User Interface)
 			"Slate",                       // Für UI-Framework (grundlegend für UMG)
 			"SlateCore",                   // Grundlegend für UMG und Slate basiertes UI
-			"NavigationSystem",            // Für NavMesh und Navigation
-			"Niagara",                     // Für visuelle Effekte (falls du es brauchst, z.B. für Drohnen Effekte)
 			"OnlineSubsystem",             // Falls du Multiplayer oder Online-Funktionalität hinzufügen möchtest
 			"OnlineSubsystemSteam",        // Falls du Steam als Online-Subsystem verwenden willst
 			"Networking",                  // Für Netzwerke (z.B. Synchronisierung und Multiplayer)
@@ -31,7 +27,13 @@ public class DroneScape : ModuleRules
 		});
 
 
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		PrivateDependencyModuleNames.AddRange(new string[] {
+			"AIModule",                    // Für AI und NPC Steuerung
+			"NavigationSystem",            // Für NavMesh und Navigation
+			"GameplayTasks",               // Für Gameplay Tasks im GAS
+			"NavigationSystem",            // Für NavMesh und Navigation
+			"Niagara",                     // Für visuelle Effekte (falls du es brauchst, z.B. für Drohnen Effekte)
+		});
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
