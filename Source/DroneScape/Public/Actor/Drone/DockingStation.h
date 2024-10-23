@@ -25,14 +25,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Method to respond to the drone's signal
-	UFUNCTION(BlueprintCallable, Category = "Docking")
-	FVector RespondToSignal() const;
-
-	// Indicates if the Drone has been found
-	UPROPERTY(BlueprintReadOnly, Category = "Docking")
-	bool bIsDroneFound = false;
-
 protected:
 	// Scene Root Component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -41,14 +33,4 @@ protected:
 	// Docking Mesh Component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* DockingMesh;
-
-private:
-	// Reference to the Drone
-	AUhuDroneCharacter* DroneReference = nullptr;
-
-	// Timer handle for pinging
-	FTimerHandle PingTimerHandle;
-
-	// Function to ping the Drone until it responds
-	void PingDrone();
 };

@@ -13,64 +13,96 @@ class ADockingStation;
 class UBehaviorTree;
 class AUhuAIController;
 
+USTRUCT(BlueprintType)
+struct FDroneTask
+{
+    GENERATED_BODY()
+
+    UPROPERTY(BlueprintReadWrite, Category="Task")
+    FString TaskName;
+
+    UPROPERTY(BlueprintReadWrite, Category="Task")
+    int32 Priority = 0;
+
+    UPROPERTY(BlueprintReadWrite, Category="Task")
+    bool bIsActive = false;
+};
+
 UCLASS()
 class DRONESCAPE_API AUhuDroneCharacter : public APawn
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	AUhuDroneCharacter();
+    // Sets default values for this pawn's properties
+    AUhuDroneCharacter();
 
-	// Posses override
-	virtual void PossessedBy(AController* NewController) override;
+    // Override for possession by a controller
+    virtual void PossessedBy(AController* NewController) override;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, Category = "AI")
-	TObjectPtr<UBehaviorTree> BehaviorTree;
+    // AI Behavior Tree
+    UPROPERTY(EditAnywhere, Category = "AI")
+    TObjectPtr<UBehaviorTree> BehaviorTree;
 
-	UPROPERTY()
-	TObjectPtr<AUhuAIController> UhuAIController;
+    // Reference to the AI Controller
+    UPROPERTY()
+    TObjectPtr<AUhuAIController> UhuAIController;
 
 public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
 
-	// Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UCapsuleComponent* CapsuleComponent;
+    // Components
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+    UCapsuleComponent* CapsuleComponent;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UStaticMeshComponent* DroneMesh;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+    UStaticMeshComponent* DroneMesh;
 
-	// Reference to the Docking Station
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Docking")
-	ADockingStation* DockingStationReference = nullptr; // Initialized as nullptr
+    // Emergency Mode
+    UFUNCTION(BlueprintCallable, Category = "Emergency")
+    void SetEmergencyModeOff() const;
 
-	// Indicates if the Docking Station has been found
-	UPROPERTY(BlueprintReadOnly, Category = "Docking")
-	bool bIsDockingStationFound = false;
+    UPROPERTY(BlueprintReadWrite, Category = "PlayTest")
+    bool bEmergencyReturnMode;
 
-	// Sends a ping to the Docking Station until it responds
-	UFUNCTION(BlueprintCallable, Category = "Docking")
-	void PingDockingStation();
+    UFUNCTION(BlueprintCallable, Category = "Emergency")
+    void SetEmergencyModeOn() const;
 
-	// PlayTest
-	UFUNCTION(BlueprintCallable, Category = "Emergency")
-	void SetEmergencyReturnMode(bool bEmergencyMode);
-	
-	UPROPERTY(BlueprintReadWrite, Category = "PlayTest")
-	bool bEmergencyReturnMode;
+    // Drone State
+    UPROPERTY(BlueprintReadWrite, Category="State")
+    bool bIsIdle;
 
-private:
-	// Timer handle for pinging
-	FTimerHandle PingTimerHandle;
+    UPROPERTY(BlueprintReadWrite, Category="State")
+    bool bIsFlying;
 
-	// Responds to the Docking Station's location request
-	FVector RequestDockingStationLocation();
+    UPROPERTY(BlueprintReadWrite, Category="State")
+    bool bIsDocked;
 
+    UPROPERTY(BlueprintReadWrite, Category="State")
+    bool bIsFuelSufficient;
 
+    // Function to set the drone's state
+    UFUNCTION(BlueprintCallable, Category="State")
+    void SetDroneState(bool bIdle, bool bFlying, bool bDocked, bool bFuelSufficient);
+
+    // Task Management
+    UPROPERTY(BlueprintReadWrite, Category="Tasks")
+    TArray<FDroneTask> TaskList;
+
+    // Function to add a task
+    UFUNCTION(BlueprintCallable, Category="Tasks")
+    void AddTask(FString TaskName, int32 Priority);
+
+    // Function to update task priorities
+    UFUNCTION(BlueprintCallable, Category="Tasks")
+    void UpdateTaskPriority();
+
+    // Function to execute the highest priority task
+    UFUNCTION(BlueprintCallable, Category="Tasks")
+    void ExecuteHighestPriorityTask();
 };

@@ -1,3 +1,10 @@
 I BTS_FindDockingStation werden Tags vergeben! true and false, sollte ein drittes vergeben sein Achtung
 
 ändern auf FindDocking Station
+anpassen
+find dockingstation mit FName Tag der Docking station
+checken ob aktive aufgaben sind 
+checken ob genüg Treibstoff vorhanden ist
+Reihenfolge der aufgaben abfragen
+warten
+an dockingstation parken

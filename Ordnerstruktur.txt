@@ -1,0 +1,75 @@
+Blueprint:
+Content/
+|-- DroneScape/
+    |-- Abilities/                	// Blueprint-Fähigkeiten, Effekte, Attribute
+        |-- BP_Ability_Fly.uasset 		(C++ -> UhuGameplayAbility)
+    |-- AI/                      	// AI-Logik und Behavior Trees
+        |-- BT_UhuNPCBehavior.uasset
+        |-- BB_UhuNPC.uasset
+    |-- Characters/              	// Charaktere als Blueprints
+        |-- BP_Drone.uasset			(C++ -> UhuDroneCharacter)
+        |-- BP_Player.uasset			(C++ -> UhuPlayerCharacter)
+        |-- BP_NPC.uasset			(C++ -> UhuNPCCharacter)
+    |-- Controllers/
+	|-- BP_PlayerController.uasset		(C++ -> UhuPlayerController)
+    |-- Components/              	// Blueprint-Komponenten
+    |-- Game
+	|-- BP_GameState			(C++ -> UhuGameState)
+    |-- Input/
+	|-- Move/
+	    |-- IA_Jump
+	    |-- IA_Look
+	    |-- IA_Move
+	    |-- IA_Sprint
+	|-- IMC_Input
+    |-- Maps				// Maps
+	|-- BP_GameMode.uasset			(C++ -> UhuGameMode)
+	|-- Blank (Level)
+    |-- UI/                    		// UI-Elemente, Widgets und HUDs
+        |-- Widgets/
+            |-- WBP_MainMenu.uasset		(C++ -> UHUWidget_MainMenu
+        |-- HUDs/
+            |-- BP_MainHUD.uasset		(C++ -> UhuHUD)
+            |-- BP_DroneHUD.uasset		(C++ -> UhuHUD)
+    |-- Structures/
+	|-- Base/
+	    |-- BP_Dockingstation		(C++ -> UhuDockingStation)
+
+
+C++
+Source/
+|-- DroneScape/
+    |-- Abilities/                	// Fähigkeiten und Attribute
+        |-- UhuGameplayAbility.h
+        |-- UhuGameplayEffect.h
+        |-- UhuAttributeSet.h
+        |-- UhuAbilitySystemComponent.h
+        |-- UhuAbilityInterface.h
+    |-- Actor/
+	|-- Drone/
+	    |-- DockingStation.h	// erbt von AActor
+    |-- AI/                      	// Künstliche Intelligenz
+        |-- UhuAIController.h
+    |-- Characters/              	// Spieler und NPC Charaktere
+        |-- UhuPlayerCharacter.h
+        |-- UhuNPCCharacter.h
+	|-- UhuDroneCharacter.h
+    |-- Components/              	// Spezifische Komponenten (z.B. für Drohne und Dialoge)
+        |-- UhuDialogComponent.h
+        |-- UhuDroneComponent.h
+    |-- Controllers/             	// Spielercontroller und Drohnencontroller
+        |-- UhuPlayerController.h
+    |-- Game/                    	// Spielzustände und Regeln
+        |-- UhuGameMode.h
+        |-- UhuGameState.h
+        |-- UhuPlayerState.h
+    |-- Managers/                	// Systeme zur Verwaltung (z.B. Dialogsystem)
+        |-- UhuDialogManager.h
+    |-- UI/                      	// Benutzeroberflächen (z.B. HUDs und Widgets)
+	|--HUD/
+	   |-- UhuHUD.h
+	|--Widgets/
+           |-- UhuUserWidget.h
+	   |-- UhuChatWindow.h	  	// erbt von UhuUserWidget
+	|--Menu/
+	   |-- UhuWidget_MainMenu.h

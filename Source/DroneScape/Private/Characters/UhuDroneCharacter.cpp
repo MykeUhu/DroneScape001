@@ -1,8 +1,6 @@
 #include "Characters/UhuDroneCharacter.h"
-#include "EngineUtils.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
-#include "Actor/Drone/DockingStation.h"
 #include "AI/UhuAIController.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -39,50 +37,7 @@ void AUhuDroneCharacter::BeginPlay()
     Super::BeginPlay();
 
     // Start pinging the Docking Station
-    PingDockingStation();
     bEmergencyReturnMode = false;
-}
-
-// Function to ping the Docking Station until it responds
-void AUhuDroneCharacter::PingDockingStation()
-{
-    // Check if the Docking Station has already been found
-    if (bIsDockingStationFound)
-    {
-        return; // Exit if already found
-    }
-
-    // Search for the Docking Station
-    for (TActorIterator<ADockingStation> It(GetWorld()); It; ++It)
-    {
-        ADockingStation* Actor = *It;
-        if (Actor)
-        {
-            DockingStationReference = Actor;
-            bIsDockingStationFound = true; // Set flag to true
-            UE_LOG(LogTemp, Warning, TEXT("Docking Station found: %s"), *DockingStationReference->GetName());
-
-            // Request the Docking Station's location
-            FVector DockingLocation = RequestDockingStationLocation();
-            UE_LOG(LogTemp, Warning, TEXT("Docking Station location: %s"), *DockingLocation.ToString());
-
-            return; // Exit after finding the Docking Station
-        }
-    }
-
-    // If not found, continue pinging after a delay
-    GetWorld()->GetTimerManager().SetTimer(PingTimerHandle, this, &AUhuDroneCharacter::PingDockingStation, 1.0f, false);
-}
-
-// Responds to the request for the Docking Station's location
-FVector AUhuDroneCharacter::RequestDockingStationLocation()
-{
-    if (DockingStationReference)
-    {
-        return DockingStationReference->RespondToSignal(); // Call the response function in Docking Station
-    }
-
-    return FVector::ZeroVector; // Return a default value if not set
 }
 
 // Called every frame
@@ -92,8 +47,52 @@ void AUhuDroneCharacter::Tick(float DeltaTime)
 }
 
 // PlayTest
-void AUhuDroneCharacter::SetEmergencyReturnMode(bool bEmergencyMode)
+bool bEmergencyMode = false;
+
+void AUhuDroneCharacter::SetEmergencyModeOn() const
 {
     bEmergencyMode = true; // Setze die Instanzvariable
     UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bEmergencyReturnMode"), bEmergencyMode); // Setze den Wert im Blackboard
+}
+
+void AUhuDroneCharacter::SetEmergencyModeOff() const
+{
+    bEmergencyMode = false; // Setze die Instanzvariable
+    UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bEmergencyReturnMode"), bEmergencyMode); // Setze den Wert im Blackboard
+}
+
+void AUhuDroneCharacter::SetDroneState(const bool bIdle, const bool bFlying, const bool bDocked, const bool bFuelSufficient)
+{
+    bIsIdle = bIdle;
+    bIsFlying = bFlying;
+    bIsDocked = bDocked;
+    bIsFuelSufficient = bFuelSufficient;
+}
+
+void AUhuDroneCharacter::AddTask(FString TaskName, const int32 Priority)
+{
+    FDroneTask NewTask;
+    NewTask.TaskName = TaskName;
+    NewTask.Priority = Priority;
+    NewTask.bIsActive = false;
+    TaskList.Add(NewTask);
+}
+
+void AUhuDroneCharacter::UpdateTaskPriority()
+{
+    TaskList.Sort([](const FDroneTask& A, const FDroneTask& B)
+    {
+        return A.Priority < B.Priority;
+    });
+}
+
+void AUhuDroneCharacter::ExecuteHighestPriorityTask()
+{
+    if (TaskList.Num() > 0)
+    {
+        auto& [TaskName, Priority, bIsActive] = TaskList[0];
+        bIsActive = true;
+        // Logik zum Ausführen der Aufgabe hier hinzufügen
+        UE_LOG(LogTemp, Warning, TEXT("Executing Task: %s"), *TaskName);
+    }
 }
