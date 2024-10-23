@@ -5,7 +5,7 @@
 #include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
 #include "Math/Vector2D.h"
-#include "Characters/UhuPlayerCharacter.h"
+#include "Characters/UhuBaseCharacter.h"  // Ändere dies hier
 
 AUhuPlayerController::AUhuPlayerController() 
 {
@@ -65,8 +65,8 @@ void AUhuPlayerController::Look(const FInputActionValue& InputActionValue)
 void AUhuPlayerController::SwitchCamera()
 {
 	// Hole den PlayerCharacter und rufe dessen SwitchCamera-Funktion auf
-	if (AUhuPlayerCharacter* PlayerCharacter = Cast<AUhuPlayerCharacter>(GetPawn()))
+	if (AUhuBaseCharacter* BaseCharacter = Cast<AUhuBaseCharacter>(GetPawn()))  // Ändere den Cast hier
 	{
-		PlayerCharacter->SwitchCamera();
+		BaseCharacter->SwitchCamera();
 	}
 }
