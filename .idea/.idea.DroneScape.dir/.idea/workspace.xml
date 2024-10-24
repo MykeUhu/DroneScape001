@@ -9,18 +9,27 @@
   <component name="ChangeListManager">
     <list default="true" id="a482cabb-5801-4cb7-9e95-369d10ea330d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/AI/BB_DroneBlackBoard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/AI/BB_DroneBlackBoard.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/AI/BTT_DroneIdle.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/AI/BTT_DroneIdle.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/AI/BTT_UhuMoveToDockingStation.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/AI/BTT_UhuMoveToDockingStation.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/AI/BT_DroneBehaviorTree.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/AI/BT_DroneBehaviorTree.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BP_UhuDrone.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BP_UhuDrone.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Game/GameMode/BP_GameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/GameMode/BP_GameMode.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/Blank.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Blank.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DroneScape.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/DroneScape.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Structures/Base/BP_DockingStation.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/HUDs/BP_DroneHUD.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/HUDs/BP_MainHUD.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Drone/DockingStation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/DroneStation/DockingStation.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuDroneCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuDroneCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/HUD/UhuHUD.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/Widgets/UhuUserWidget.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Drone/DockingStation.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/DroneStation/DockingStation.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuDroneCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuDroneCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/HUD/UhuHUD.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuUserWidget.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +52,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/DroneScape/UHT/UhuPlayerUI.gen.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" root0="FORCE_HIGHLIGHTING" />
@@ -179,7 +185,9 @@
       <workItem from="1729490963861" duration="980000" />
       <workItem from="1729492147991" duration="21333000" />
       <workItem from="1729574925312" duration="1580000" />
-      <workItem from="1729592471433" duration="22714000" />
+      <workItem from="1729592471433" duration="27566000" />
+      <workItem from="1729757250421" duration="239000" />
+      <workItem from="1729757517968" duration="5754000" />
     </task>
     <servers />
   </component>

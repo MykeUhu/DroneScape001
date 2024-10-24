@@ -1,21 +1,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
-#include "DockingStation.generated.h"
+#include "BaseStation.h"
+#include "ControlStation.generated.h"
 
 class UStaticMeshComponent;
-class USceneComponent;
-class AUhuDroneCharacter;
 
 UCLASS()
-class DRONESCAPE_API ADockingStation : public AActor
+class DRONESCAPE_API AControlStation : public ABaseStation
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	ADockingStation();
+	AControlStation();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,11 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 protected:
-	// Scene Root Component
+	// Control Panel Mesh Component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	USceneComponent* SceneRoot;
-
-	// Docking Mesh Component
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* DockingMesh;
+	UStaticMeshComponent* ControlPanelMesh;
 };

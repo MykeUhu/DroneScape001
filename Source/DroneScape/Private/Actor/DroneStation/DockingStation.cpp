@@ -1,16 +1,11 @@
-#include "Actor/Drone/DockingStation.h"
+#include "Actor/DroneStation/DockingStation.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SceneComponent.h"
 
 // Sets default values
 ADockingStation::ADockingStation()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
-	// Initialize components
-	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
-	RootComponent = SceneRoot;
-
+	// Create Docking Mesh Component
 	DockingMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DockingMesh"));
 	DockingMesh->SetupAttachment(RootComponent);
 }

@@ -32,7 +32,6 @@ void AUhuDroneCharacter::PossessedBy(AController* NewController)
     {
         UhuAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset);
         UhuAIController->RunBehaviorTree(BehaviorTree);
-        UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bEmergencyReturnMode"), false);
     }
 }
 
@@ -70,30 +69,13 @@ void AUhuDroneCharacter::Tick(float DeltaTime)
     }
 }
 
-void AUhuDroneCharacter::SetEmergencyModeOn()
-{
-    bEmergencyReturnMode = true; // Setze die Instanzvariable
-    if (UhuAIController)
-    {
-        UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bEmergencyReturnMode"), bEmergencyReturnMode); // Setze den Wert im Blackboard
-    }
-}
-
-void AUhuDroneCharacter::SetEmergencyModeOff()
-{
-    bEmergencyReturnMode = false; // Setze die Instanzvariable
-    if (UhuAIController)
-    {
-        UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bEmergencyReturnMode"), bEmergencyReturnMode); // Setze den Wert im Blackboard
-    }
-}
-
-void AUhuDroneCharacter::SetDroneState(bool bIdle, bool bFlying, bool bDocked, bool bFuelSufficient)
+void AUhuDroneCharacter::SetDroneState(bool bIdle, bool bFlying, bool bDocked, bool bFuelSufficient, bool bEmergencyReturnMode)
 {
     this->bIsIdle = bIdle;
     this->bIsFlying = bFlying;
     this->bIsDocked = bDocked;
     this->bIsFuelSufficient = bFuelSufficient;
+    this->bIsEmergencyReturnMode = bEmergencyReturnMode;
 
     // Blackboard
     if (UhuAIController)
@@ -102,6 +84,7 @@ void AUhuDroneCharacter::SetDroneState(bool bIdle, bool bFlying, bool bDocked, b
         UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bIsFlying"), this->bIsFlying);
         UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bIsDocked"), this->bIsDocked);
         UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bIsFuelSufficient"), this->bIsFuelSufficient);
+        UhuAIController->GetBlackboardComponent()->SetValueAsBool(FName("bIsEmergencyReturnMode"), this->bIsEmergencyReturnMode);
     }
 }
 

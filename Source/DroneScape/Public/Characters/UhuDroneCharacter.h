@@ -50,18 +50,10 @@ public:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     UStaticMeshComponent* DroneMesh;
-    
-    // Notfallmodus aktivieren
-    UFUNCTION(BlueprintCallable, Category="Drone")
-    void SetEmergencyModeOn();
-
-    // Notfallmodus deaktivieren
-    UFUNCTION(BlueprintCallable, Category="Drone")
-    void SetEmergencyModeOff();
 
     // Setze den Status der Drohne
     UFUNCTION(BlueprintCallable, Category="Drone")
-    void SetDroneState(bool bIdle, bool bFlying, bool bDocked, bool bFuelSufficient);
+    void SetDroneState(bool bIdle, bool bFlying, bool bDocked, bool bFuelSufficient, bool bEmergencyReturnMode);
     
     // Führt die Aufgabe mit der höchsten Priorität aus
     UFUNCTION(BlueprintCallable, Category="Drone.Task")
@@ -72,14 +64,12 @@ private:
     UPROPERTY(VisibleAnywhere, Category="Drone")
     UDroneTaskManager* DroneTaskManager;
     
-    // Notfall-Modus-Flag
-    bool bEmergencyReturnMode = false;
-
-    // Status der Drohne
+     // Status der Drohne
     bool bIsIdle = false;
     bool bIsFlying = false;
     bool bIsDocked = false;
     bool bIsFuelSufficient = false;
+    bool bIsEmergencyReturnMode = false;
 
 
 };
