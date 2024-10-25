@@ -18,6 +18,11 @@ void FUhuGameplayTags::InitializeNativeGameplayTags()
 		FString("Represents the health of the character.")
 	);
 
+	GameplayTags.Attributes_Vital_MaxHealth = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Attributes.Vital.MaxHealth"),
+	FString("Represents the maximum health of the character.")
+	);
+
 	GameplayTags.Attributes_Vital_Stamina = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Attributes.Vital.Stamina"),
 		FString("Represents the stamina of the character.")

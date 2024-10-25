@@ -20,6 +20,7 @@ public:
 	
 	/* Vital Attributes */
 	FGameplayTag Attributes_Vital_Health;
+	FGameplayTag Attributes_Vital_MaxHealth;
 	FGameplayTag Attributes_Vital_Stamina;
 	FGameplayTag Attributes_Vital_Hunger;
 	FGameplayTag Attributes_Vital_Thirst;

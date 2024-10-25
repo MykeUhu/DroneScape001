@@ -13,6 +13,17 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+/*
+ * BoilerPlate für neue Attribute
+ * hier einfügen,
+ * in UhuGameplayTags
+ * dann in GE_VitalAttributes in BP die Attribute hinzufügen
+ * DA_AttributeInfo
+ * Broadcast Initial Values in Overlay WidgetController!
+ */
+
+// TODO: remove Hardcoded Values of Max in GE_Atributes
+
 USTRUCT()
 
 struct FEffectProperties
@@ -60,12 +71,15 @@ class DRONESCAPE_API UUhuAttributeSet : public UAttributeSet
 
 public:
 	UUhuAttributeSet();
+	
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 	
 	TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
+
+	
 	/*
 	 * Vital Attributes
 	 */
@@ -73,6 +87,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes")
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(UUhuAttributeSet, Health);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxHealth, Category = "Vital Attributes")
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UUhuAttributeSet, MaxHealth);
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Stamina, Category = "Vital Attributes")
 	FGameplayAttributeData Stamina;
@@ -180,6 +198,9 @@ protected:
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
 
 	UFUNCTION()
+	void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const;
+
+	UFUNCTION()
 	void OnRep_Stamina(const FGameplayAttributeData& OldStamina) const;
 
 	UFUNCTION()
@@ -252,8 +273,3 @@ private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
 };
 
-	/*
-	 * BoilerPlate für neue Attribute
-	 * hier einfügen, dann in GE_VitalAttributes in BP die Attribute hinzufügen
-	 * DA_AttributeInfo
-	 */

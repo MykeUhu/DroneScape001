@@ -11,7 +11,8 @@ class UUhuAttributeSet;
 void UOverlayWidgetController::BroadcastInitialValues()
 {
 	const UUhuAttributeSet* UhuAttributeSet = CastChecked<UUhuAttributeSet>(AttributeSet);
-	
+	OnHealthChanged.Broadcast(UhuAttributeSet->GetHealth());
+	OnMaxHealthChanged.Broadcast(UhuAttributeSet->GetMaxHealth());
 }
 
 void UOverlayWidgetController::BindCallbacksToDependencies()
@@ -24,6 +25,13 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 				OnHealthChanged.Broadcast(Data.NewValue);
 			}
 		);
+	
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UhuAttributeSet->GetMaxHealthAttribute()).AddLambda(
+		[this](const FOnAttributeChangeData& Data)
+		{
+			OnMaxHealthChanged.Broadcast(Data.NewValue);
+		}
+	);
 
 	
 	Cast<UUhuAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(

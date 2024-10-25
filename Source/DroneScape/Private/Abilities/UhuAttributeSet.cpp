@@ -14,6 +14,7 @@ UUhuAttributeSet::UUhuAttributeSet()
 
     /* Vital Attributes */
     TagsToAttributes.Add(GameplayTags.Attributes_Vital_Health, GetHealthAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Vital_MaxHealth, GetMaxHealthAttribute);
     TagsToAttributes.Add(GameplayTags.Attributes_Vital_Stamina, GetStaminaAttribute);
     TagsToAttributes.Add(GameplayTags.Attributes_Vital_Hunger, GetHungerAttribute);
     TagsToAttributes.Add(GameplayTags.Attributes_Vital_Thirst, GetThirstAttribute);
@@ -45,6 +46,7 @@ void UUhuAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 
 	// Vital Attributes
 	DOREPLIFETIME_CONDITION_NOTIFY(UUhuAttributeSet, Health, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UUhuAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UUhuAttributeSet, Stamina, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UUhuAttributeSet, Hunger, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UUhuAttributeSet, Thirst, COND_None, REPNOTIFY_Always);
@@ -91,6 +93,11 @@ void UUhuAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbac
 void UUhuAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UUhuAttributeSet, Health, OldHealth);
+}
+
+void UUhuAttributeSet::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UUhuAttributeSet, MaxHealth, OldMaxHealth);
 }
 
 void UUhuAttributeSet::OnRep_Stamina(const FGameplayAttributeData& OldStamina) const

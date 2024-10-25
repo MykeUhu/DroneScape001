@@ -91,6 +91,7 @@ void AUhuBaseCharacter::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayE
 
 void AUhuBaseCharacter::InitializeDefaultAttributes() const
 {
+	// if Attributes depend on ohter be careful with order to initialize
 	ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
 	ApplyEffectToSelf(DefaultNutrientAttributes, 1.f);
 	ApplyEffectToSelf(DefaultDroneAttributes, 1.f);
