@@ -5,7 +5,10 @@
 #include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
 #include "Math/Vector2D.h"
-#include "Characters/UhuBaseCharacter.h"  // Ändere dies hier
+#include "Characters/UhuBaseCharacter.h" 
+
+class AUhuBaseHud;
+class AUhuDroneCharacter;
 
 AUhuPlayerController::AUhuPlayerController() 
 {
@@ -17,7 +20,7 @@ AUhuPlayerController::AUhuPlayerController()
 void AUhuPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	check(Subsystem);
 	Subsystem->AddMappingContext(InputMappingContext, 0);

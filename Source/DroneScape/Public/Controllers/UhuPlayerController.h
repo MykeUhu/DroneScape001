@@ -3,9 +3,9 @@
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
-#include "Characters/UhuBaseCharacter.h"
 #include "UhuPlayerController.generated.h"
 
+class UUhuWidgetController;
 class UInputMappingContext;
 class UUhuChatWindow;
 class UEnhancedInputComponent;
@@ -40,5 +40,6 @@ private:
 
     void Move(const FInputActionValue& InputActionValue);
     void Look(const FInputActionValue& InputActionValue);
-    void SwitchCamera(); 
+    
+    void SwitchCamera();
 };

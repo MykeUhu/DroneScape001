@@ -3,34 +3,57 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "AbilitySystemComponent.h"
+#include "UObject/NoExportTypes.h"
 #include "UhuWidgetController.generated.h"
 
-class UUserWidget;
+class UAttributeSet;
+class UAbilitySystemComponent;
 
-UCLASS()
-class DRONESCAPE_API UUhuWidgetController : public UUserWidget
+USTRUCT(BlueprintType)
+struct FWidgetControllerParams
 {
 	GENERATED_BODY()
 
+	FWidgetControllerParams() {}
+	FWidgetControllerParams(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
+	: PlayerController(PC), PlayerState(PS), AbilitySystemComponent(ASC), AttributeSet(AS) {}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<APlayerController> PlayerController = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<APlayerState> PlayerState = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UAttributeSet> AttributeSet = nullptr;
+};
+
+UCLASS()
+class DRONESCAPE_API UUhuWidgetController : public UObject
+{
+	GENERATED_BODY()
 public:
-	virtual void NativeConstruct() override;
+	UFUNCTION(BlueprintCallable)
+	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
 
 	UFUNCTION(BlueprintCallable)
-	void ShowPlayerHUD();
-
-	UFUNCTION(BlueprintCallable)
-	void ShowDroneHUD();
-
+	virtual void BroadcastInitialValues();
+	virtual void BindCallbacksToDependencies();
+    
 protected:
-	// Verwende TWeakObjectPtr, um stale Pointer zu vermeiden
-	TWeakObjectPtr<UUserWidget> PlayerHUD;
-	TWeakObjectPtr<UUserWidget> DroneHUD;
-	UUserWidget* CurrentHUD = nullptr;
+	UPROPERTY(BlueprintReadOnly, Category="WidgetController")
+	TObjectPtr<APlayerController> PlayerController;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
-	TSubclassOf<UUserWidget> PlayerHUDClass;
+	UPROPERTY(BlueprintReadOnly, Category="WidgetController")
+	TObjectPtr<APlayerState> PlayerState;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HUD")
-	TSubclassOf<UUserWidget> DroneHUDClass;
+	UPROPERTY(BlueprintReadOnly, Category="WidgetController")
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY(BlueprintReadOnly, Category="WidgetController")
+	TObjectPtr<UAttributeSet> AttributeSet;
 };

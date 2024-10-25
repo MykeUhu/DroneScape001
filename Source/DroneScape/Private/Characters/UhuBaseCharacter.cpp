@@ -2,7 +2,7 @@
 
 #include "Characters/UhuBaseCharacter.h"
 
-#include "Characters/UhuPlayerCharacter.h"
+#include "AbilitySystemComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -69,4 +69,29 @@ void AUhuBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 
 	// Replicate the camera view state to other clients
 	DOREPLIFETIME(AUhuBaseCharacter, bIsThirdPersonView);
+}
+
+UAbilitySystemComponent* AUhuBaseCharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+void AUhuBaseCharacter::InitAbilityActorInfo()
+{
+}
+
+void AUhuBaseCharacter::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const
+{
+	check(IsValid(GetAbilitySystemComponent()));
+	check(GameplayEffectClass);
+	FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	ContextHandle.AddSourceObject(this);
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
+}
+
+void AUhuBaseCharacter::InitializeDefaultAttributes() const
+{
+	ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
+	ApplyEffectToSelf(DefaultNutrientAttributes, 1.f);
+	ApplyEffectToSelf(DefaultDroneAttributes, 1.f);
 }

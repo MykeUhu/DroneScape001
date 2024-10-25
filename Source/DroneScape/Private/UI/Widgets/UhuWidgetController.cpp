@@ -1,48 +1,22 @@
-// Copyright by MykeUhu
-
-
 #include "UI/Widgets/UhuWidgetController.h"
 
-void UUhuWidgetController::NativeConstruct()
+void UUhuWidgetController::SetWidgetControllerParams(const FWidgetControllerParams& WCParams)
 {
-	Super::NativeConstruct();
-
-	// Hier kannst du die HUD-Klassen initialisieren
-	if (PlayerHUDClass)
-	{
-		PlayerHUD = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDClass);
-	}
-
-	if (DroneHUDClass)
-	{
-		DroneHUD = CreateWidget<UUserWidget>(GetWorld(), DroneHUDClass);
-	}
+	// Setzen der Parameter für den Widget Controller (PlayerController, PlayerState, AbilitySystemComponent, AttributeSet)
+	PlayerController = WCParams.PlayerController;
+	PlayerState = WCParams.PlayerState;
+	AbilitySystemComponent = WCParams.AbilitySystemComponent;
+	AttributeSet = WCParams.AttributeSet;
 }
 
-void UUhuWidgetController::ShowPlayerHUD()
+void UUhuWidgetController::BroadcastInitialValues()
 {
-	if (CurrentHUD)
-	{
-		CurrentHUD->RemoveFromParent();  
-	}
-
-	if (PlayerHUD.IsValid())
-	{
-		CurrentHUD = PlayerHUD.Get();
-		CurrentHUD->AddToViewport();
-	}
+	// Hier können die initialen Werte der Attribute (falls benötigt) an das UI übertragen werden
+	// Momentan leer, da keine speziellen Attribute oder Funktionen implementiert sind
 }
 
-void UUhuWidgetController::ShowDroneHUD()
+void UUhuWidgetController::BindCallbacksToDependencies()
 {
-	if (CurrentHUD)
-	{
-		CurrentHUD->RemoveFromParent();  
-	}
-
-	if (DroneHUD.IsValid())
-	{
-		CurrentHUD = DroneHUD.Get();
-		CurrentHUD->AddToViewport();
-	}
+	// Hier werden die Callbacks an die Änderungen der Attribute gebunden
+	// Momentan leer, da keine speziellen Attribute oder Abhängigkeiten implementiert sind
 }

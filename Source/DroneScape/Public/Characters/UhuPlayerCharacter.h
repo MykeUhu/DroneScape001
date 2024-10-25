@@ -1,9 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "InputActionValue.h"
-#include "EnhancedInputComponent.h"  // Füge dies hinzu
+#include "EnhancedInputComponent.h" 
 #include "UhuBaseCharacter.h"
 #include "UhuPlayerCharacter.generated.h"
 
@@ -19,6 +17,10 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+
 
 private:
 	// Hier definierst du die Input Actions
@@ -28,5 +30,6 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input Actions")
 	TObjectPtr<UInputAction> LookAction;
 
-	// Weitere Membervariablen und Methoden...
+
+	virtual void InitAbilityActorInfo() override;
 };

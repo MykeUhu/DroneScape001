@@ -16,7 +16,6 @@ public class DroneScape : ModuleRules
 			"HeadMountedDisplay",          // Für VR/AR oder Kopfbedeckungen (VR-Headset z.B.)
 			"EnhancedInput",               // Für das Enhanced Input System
 			"GameplayAbilities",           // Für das Gameplay Ability System (GAS)
-			"GameplayTags",                // Für Gameplay Tags im GAS
 			"UMG",                         // Für UI und Widgets (User Interface)
 			"Slate",                       // Für UI-Framework (grundlegend für UMG)
 			"SlateCore",                   // Grundlegend für UMG und Slate basiertes UI
@@ -31,6 +30,7 @@ public class DroneScape : ModuleRules
 			"AIModule",                    // Für AI und NPC Steuerung
 			"NavigationSystem",            // Für NavMesh und Navigation
 			"GameplayTasks",               // Für Gameplay Tasks im GAS
+			"GameplayTags",                // Für Gameplay Tags im GAS
 			"NavigationSystem",            // Für NavMesh und Navigation
 			"Niagara",                     // Für visuelle Effekte (falls du es brauchst, z.B. für Drohnen Effekte)
 		});
