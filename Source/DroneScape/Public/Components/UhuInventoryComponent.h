@@ -1,23 +1,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Actor/Inventory/UhuItemData.h"
 #include "Components/ActorComponent.h"
+#include "GameplayTagContainer.h"
+#include "Actor/Inventory/UhuInventorySystem.h"
 #include "UhuInventoryComponent.generated.h"
-
-USTRUCT(BlueprintType)
-struct FUhuInventoryItem
-{
-	GENERATED_BODY()
-
-	// Item-Daten
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FUhuItemData ItemData;
-
-	// Menge des Items (z.B. 5 Äpfel)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Quantity = 0;
-};
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class DRONESCAPE_API UUhuInventoryComponent : public UActorComponent
@@ -27,20 +14,37 @@ class DRONESCAPE_API UUhuInventoryComponent : public UActorComponent
 public:
 	UUhuInventoryComponent();
 
+	// Fügt ein Item hinzu, falls es in den erlaubten Tags ist
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	bool AddItem(const FGameplayTag& ItemTag, int32 Amount) const;
+
+	// Entfernt ein Item, falls es in den erlaubten Tags ist
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	bool RemoveItem(const FGameplayTag& ItemTag, int32 Amount) const;
+
+	// Gibt die Menge eines Items im Inventar zurück
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	int32 GetItemAmount(const FGameplayTag& ItemTag) const;
+
+	// Übergibt Items an ein anderes Inventar
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	bool TransferItemTo(UUhuInventoryComponent* TargetInventory, const FGameplayTag& ItemTag, int32 Amount);
+
 protected:
 	virtual void BeginPlay() override;
 
-public:
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	void AddItem(FUhuItemData ItemData, int32 Quantity);
-
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	void RemoveItem(int32 ItemID, int32 Quantity);
-
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	void ConsumeItem(int32 ItemID);
-
 private:
-	UPROPERTY()
-	TArray<FUhuInventoryItem> InventoryItems;
+	// Referenz zum zentralen Inventarsystem
+	UUhuInventorySystem* InventorySystem;
+
+	// Tag zur Identifizierung des Inventartyps
+	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
+	FGameplayTag InventoryTag;
+
+	// Liste der erlaubten Item-Tags
+	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
+	TArray<FGameplayTag> AllowedItemTags;
+
+	// Hilfsfunktion, um die Erlaubnis zu überprüfen
+	bool IsItemAllowed(const FGameplayTag& ItemTag) const;
 };

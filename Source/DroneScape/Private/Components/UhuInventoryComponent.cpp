@@ -1,9 +1,8 @@
 #include "Components/UhuInventoryComponent.h"
 
-#include "Actor/Inventory/UhuChest.h"
-#include "Components/UhuItemDataComponent.h"
+#include "Actor/Inventory/UhuInventorySystem.h"
 
-UUhuInventoryComponent::UUhuInventoryComponent()
+UUhuInventoryComponent::UUhuInventoryComponent(): InventorySystem(nullptr)
 {
 	PrimaryComponentTick.bCanEverTick = false;
 }
@@ -11,47 +10,55 @@ UUhuInventoryComponent::UUhuInventoryComponent()
 void UUhuInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// Verweise auf das zentrale Inventarsystem abrufen
+	InventorySystem = GetOwner()->FindComponentByClass<UUhuInventorySystem>();
 }
 
-void UUhuInventoryComponent::AddItem(FUhuItemData ItemData, int32 Quantity)
+// Fügt ein Item hinzu, falls es in den erlaubten Tags ist
+bool UUhuInventoryComponent::AddItem(const FGameplayTag& ItemTag, const int32 Amount) const
 {
-	// Überprüfen, ob das Item bereits existiert
-	for (FUhuInventoryItem& InventoryItem : InventoryItems)
+	if (IsItemAllowed(ItemTag) && InventorySystem)
 	{
-		if (InventoryItem.ItemData.ItemID == ItemData.ItemID)
-		{
-			// Erhöhe die Menge des vorhandenen Items
-			InventoryItem.Quantity += Quantity;
-			return;
-		}
+		InventorySystem->AddItem(ItemTag, Amount);
+		return true;
 	}
-
-	// Falls das Item noch nicht im Inventar ist, neues Item hinzufügen
-	FUhuInventoryItem NewItem;
-	NewItem.ItemData = ItemData;
-	NewItem.Quantity = Quantity;
-	InventoryItems.Add(NewItem);
+	return false;
 }
 
-void UUhuInventoryComponent::RemoveItem(int32 ItemID, int32 Quantity)
+// Entfernt ein Item, falls es in den erlaubten Tags ist
+bool UUhuInventoryComponent::RemoveItem(const FGameplayTag& ItemTag, const int32 Amount) const
 {
-	for (int32 i = 0; i < InventoryItems.Num(); i++)
+	if (IsItemAllowed(ItemTag) && InventorySystem)
 	{
-		if (InventoryItems[i].ItemData.ItemID == ItemID)
-		{
-			// Reduziere die Menge des Items
-			InventoryItems[i].Quantity -= Quantity;
-			if (InventoryItems[i].Quantity <= 0)
-			{
-				// Entferne das Item, falls die Menge 0 erreicht
-				InventoryItems.RemoveAt(i);
-			}
-			return;
-		}
+		return InventorySystem->RemoveItem(ItemTag, Amount);
 	}
+	return false;
 }
 
-void UUhuInventoryComponent::ConsumeItem(int32 ItemID)
+// Gibt die Menge eines Items im Inventar zurück
+int32 UUhuInventoryComponent::GetItemAmount(const FGameplayTag& ItemTag) const
 {
-	RemoveItem(ItemID, 1);  // Konsumiere eine Einheit des Items
+	if (InventorySystem)
+	{
+		return InventorySystem->GetItemAmount(ItemTag);
+	}
+	return 0; // Gibt 0 zurück, wenn das Inventarsystem nicht vorhanden ist
+}
+
+// Übergibt Items an ein anderes Inventar
+bool UUhuInventoryComponent::TransferItemTo(UUhuInventoryComponent* TargetInventory, const FGameplayTag& ItemTag, int32 Amount)
+{
+	if (TargetInventory && RemoveItem(ItemTag, Amount))
+	{
+		TargetInventory->AddItem(ItemTag, Amount);
+		return true;
+	}
+	return false;
+}
+
+// Hilfsfunktion, um die Erlaubnis zu überprüfen
+bool UUhuInventoryComponent::IsItemAllowed(const FGameplayTag& ItemTag) const
+{
+	return AllowedItemTags.Num() == 0 || AllowedItemTags.Contains(ItemTag);
 }

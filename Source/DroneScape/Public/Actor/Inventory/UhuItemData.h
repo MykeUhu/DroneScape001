@@ -37,10 +37,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Nahrung")
 	float SaturationDuration = 0.0f;
 
-	// Baumaterial-spezifische Daten (optional hinzufügbar)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Baumaterial")
-	int32 Durability = 0;
-
 	// Gameplay-Effekte
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effekte")
 	TArray<TSubclassOf<class UGameplayEffect>> Effects;  // Mehrere Effekte möglich
