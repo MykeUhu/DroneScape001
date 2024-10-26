@@ -45,6 +45,9 @@ public:
 	FGameplayTag Attributes_Drone_Durability;
 	FGameplayTag Attributes_Drone_ResourceCapacity;
 
+	/* Food Items */
+	FGameplayTag Items_Food_Maggots;
+
 private:
 	static FUhuGameplayTags GameplayTags;
 };

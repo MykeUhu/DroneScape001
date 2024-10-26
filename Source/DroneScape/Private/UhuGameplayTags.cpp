@@ -123,4 +123,11 @@ void FUhuGameplayTags::InitializeNativeGameplayTags()
 		FName("Attributes.Drone.ResourceCapacity"),
 		FString("Represents the resource capacity of the drone.")
 	);
+
+	// FoodItems
+	GameplayTags.Items_Food_Maggots = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Items.Food.Maggots"),
+		FString("Represents maggots as a food item.")
+	);
 }
+
