@@ -1,23 +1,34 @@
-﻿#include "UI/Widgets/UhuInventoryWidget.h"
+#include "UI/Widgets/UhuInventoryWidget.h"
 #include "UI/Widgets/UhuItemWidget.h"
 #include "Components/VerticalBox.h"
+#include "Components/TextBlock.h"
+#include "Engine/DataTable.h"
 
-void UUhuInventoryWidget::NativeConstruct()
+void UUhuInventoryWidget::InitializeInventoryWidget()
 {
-	Super::NativeConstruct();
-
-	// Hier könntest du das Inventar initialisieren oder die bestehenden Items laden
+	OnInitializeInventoryWidget();
 }
 
-void UUhuInventoryWidget::AddItemWidget(const FGameplayTag& ItemTag, const FString& ItemName, UTexture2D* ItemIcon, int32 ItemAmount)
+void UUhuInventoryWidget::UpdateInventoryDisplay()
 {
-	if (ItemList)
+	OnUpdateInventoryDisplay();
+
+	if (!InventoryContainer || !ItemWidgetClass)
 	{
-		UUhuItemWidget* NewItemWidget = CreateWidget<UUhuItemWidget>(GetWorld(), UUhuItemWidget::StaticClass());
-		if (NewItemWidget)
+		UE_LOG(LogTemp, Warning, TEXT("InventoryContainer oder ItemWidgetClass ist nicht gesetzt!"));
+		return;
+	}
+
+	// Beispiel: Füge ein Item-Widget für jedes Item hinzu
+	for (int32 i = 0; i < 10; ++i) // Beispielhaft 10 Items
+	{
+		UUhuItemWidget* ItemWidget = CreateWidget<UUhuItemWidget>(this, ItemWidgetClass);
+		if (ItemWidget)
 		{
-			NewItemWidget->InitializeWidget(ItemTag, ItemName, ItemIcon, ItemAmount);
-			ItemList->AddChild(NewItemWidget);
+			FGameplayTag ItemTag; // Setze den tatsächlichen ItemTag
+			UDataTable* DataTable = nullptr; // Setze die tatsächliche DataTable
+			ItemWidget->InitializeWidget(ItemTag, DataTable);
+			InventoryContainer->AddChild(ItemWidget);
 		}
 	}
 }

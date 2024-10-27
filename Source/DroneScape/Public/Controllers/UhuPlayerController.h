@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
+#include "UI/Widgets/UhuInventoryWidget.h"
 #include "UhuPlayerController.generated.h"
 
 class UUhuWidgetController;
@@ -25,7 +26,7 @@ protected:
     virtual void SetupInputComponent() override;
 
 private:
-    // Input Actions Begin
+    // Input Actions
     UPROPERTY(EditAnywhere, Category = "Input Actions")
     TObjectPtr<UInputMappingContext> InputMappingContext;
 
@@ -40,6 +41,12 @@ private:
 
     void Move(const FInputActionValue& InputActionValue);
     void Look(const FInputActionValue& InputActionValue);
-    
     void SwitchCamera();
+
+    // Inventory Widget
+    UPROPERTY(EditAnywhere, Category = "UI")
+    TSubclassOf<UUserWidget> InventoryWidgetClass;
+
+    UPROPERTY()
+    UUhuInventoryWidget* InventoryWidget;
 };

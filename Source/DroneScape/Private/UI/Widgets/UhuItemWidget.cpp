@@ -1,43 +1,63 @@
 ﻿#include "UI/Widgets/UhuItemWidget.h"
-
+#include "Actor/Inventory/UhuItemData.h"
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
+#include "Engine/DataTable.h"
 
 void UUhuItemWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	// Initialisierung oder UI Setup kann hier erfolgen
+	InitializeWidget(FGameplayTag(), nullptr);
 }
 
-void UUhuItemWidget::InitializeWidget(const FGameplayTag& ItemTag, const FString& ItemName, UTexture2D* ItemIcon, int32 ItemAmount)
+void UUhuItemWidget::InitializeWidget(const FGameplayTag& ItemTag, UDataTable* DataTable)
 {
 	CurrentItemTag = ItemTag;
 
-	// Setze den Namen des Items
-	if (ItemNameText)
+	if (DataTable)
 	{
-		ItemNameText->SetText(FText::FromString(ItemName));
+		LoadItemData(ItemTag, DataTable);
 	}
-
-	// Setze das Icon des Items
-	if (ItemIconImage)
+	else
 	{
-		ItemIconImage->SetBrushFromTexture(ItemIcon);
-	}
-
-	// Setze die Menge des Items
-	if (ItemAmountText)
-	{
-		ItemAmountText->SetText(FText::FromString(FString::Printf(TEXT("Menge: %d"), ItemAmount)));
+		UE_LOG(LogTemp, Warning, TEXT("DataTable is not set for %s"), *GetName());
 	}
 }
 
-void UUhuItemWidget::UpdateAmountDisplay()
+void UUhuItemWidget::LoadItemData(const FGameplayTag& ItemTag, UDataTable* DataTable)
+{
+	if (!DataTable)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("DataTable is not set for %s"), *GetName());
+		return;
+	}
+
+	for (const FName RowName : DataTable->GetRowNames())
+	{
+		if (const FUhuItemData* Row = DataTable->FindRow<FUhuItemData>(RowName, TEXT("")); Row && Row->ItemTag == ItemTag)
+		{
+			if (ItemNameText)
+			{
+				ItemNameText->SetText(FText::FromString(Row->ItemName));
+			}
+
+			if (ItemIconImage)
+			{
+				ItemIconImage->SetBrushFromTexture(Row->ItemIcon);
+			}
+
+			return;
+		}
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("DataTable row not found for tag: %s"), *ItemTag.GetTagName().ToString());
+}
+
+void UUhuItemWidget::UpdateAmountDisplay(int32 ItemAmount)
 {
 	if (ItemAmountText)
 	{
-		// Hier könntest du die Logik hinzufügen, um die Menge basierend auf dem Inventarsystem zu aktualisieren
-		// Zum Beispiel könntest du den aktuellen Betrag abrufen und die Anzeige entsprechend aktualisieren
+		ItemAmountText->SetText(FText::AsNumber(ItemAmount));
 	}
 }

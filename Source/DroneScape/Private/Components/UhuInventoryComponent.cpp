@@ -1,64 +1,89 @@
 #include "Components/UhuInventoryComponent.h"
-
 #include "Actor/Inventory/UhuInventorySystem.h"
+#include "Blueprint/UserWidget.h"
+#include "Components/UniformGridPanel.h"
+#include "Components/UniformGridSlot.h"
+#include "UI/Widgets/UhuItemWidget.h"
+#include "Net/UnrealNetwork.h"
 
-UUhuInventoryComponent::UUhuInventoryComponent(): InventorySystem(nullptr)
+UUhuInventoryComponent::UUhuInventoryComponent()
 {
-	PrimaryComponentTick.bCanEverTick = false;
+    PrimaryComponentTick.bCanEverTick = false;
 }
 
 void UUhuInventoryComponent::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
-	// Verweise auf das zentrale Inventarsystem abrufen
-	InventorySystem = GetOwner()->FindComponentByClass<UUhuInventorySystem>();
+    // Get reference to the central inventory system
+    InventorySystem = GetOwner()->FindComponentByClass<UUhuInventorySystem>();
 }
 
-// Fügt ein Item hinzu, falls es in den erlaubten Tags ist
-bool UUhuInventoryComponent::AddItem(const FGameplayTag& ItemTag, const int32 Amount) const
+bool UUhuInventoryComponent::AddItem(const FGameplayTag& ItemTag, int32 Amount)
 {
-	if (IsItemAllowed(ItemTag) && InventorySystem)
-	{
-		InventorySystem->AddItem(ItemTag, Amount);
-		return true;
-	}
-	return false;
+    if (IsItemAllowed(ItemTag) && InventorySystem)
+    {
+        InventorySystem->AddItem(ItemTag, Amount);
+        return true;
+    }
+    return false;
 }
 
-// Entfernt ein Item, falls es in den erlaubten Tags ist
-bool UUhuInventoryComponent::RemoveItem(const FGameplayTag& ItemTag, const int32 Amount) const
+bool UUhuInventoryComponent::RemoveItem(const FGameplayTag& ItemTag, int32 Amount)
 {
-	if (IsItemAllowed(ItemTag) && InventorySystem)
-	{
-		return InventorySystem->RemoveItem(ItemTag, Amount);
-	}
-	return false;
+    if (IsItemAllowed(ItemTag) && InventorySystem)
+    {
+        return InventorySystem->RemoveItem(ItemTag, Amount);
+    }
+    return false;
 }
 
-// Gibt die Menge eines Items im Inventar zurück
 int32 UUhuInventoryComponent::GetItemAmount(const FGameplayTag& ItemTag) const
 {
-	if (InventorySystem)
-	{
-		return InventorySystem->GetItemAmount(ItemTag);
-	}
-	return 0; // Gibt 0 zurück, wenn das Inventarsystem nicht vorhanden ist
+    if (InventorySystem)
+    {
+        return InventorySystem->GetItemAmount(ItemTag);
+    }
+    return 0;
 }
 
-// Übergibt Items an ein anderes Inventar
 bool UUhuInventoryComponent::TransferItemTo(UUhuInventoryComponent* TargetInventory, const FGameplayTag& ItemTag, int32 Amount)
 {
-	if (TargetInventory && RemoveItem(ItemTag, Amount))
-	{
-		TargetInventory->AddItem(ItemTag, Amount);
-		return true;
-	}
-	return false;
+    if (TargetInventory && RemoveItem(ItemTag, Amount))
+    {
+        TargetInventory->AddItem(ItemTag, Amount);
+        return true;
+    }
+    return false;
 }
 
-// Hilfsfunktion, um die Erlaubnis zu überprüfen
 bool UUhuInventoryComponent::IsItemAllowed(const FGameplayTag& ItemTag) const
 {
-	return AllowedItemTags.Num() == 0 || AllowedItemTags.Contains(ItemTag);
+    return AllowedItemTags.Num() == 0 || AllowedItemTags.HasTag(ItemTag);
+}
+
+void UUhuInventoryComponent::AddItemToGrid(UUserWidget* InventoryWidget, const FGameplayTag& ItemTag)
+{
+    if (!InventoryWidget) return;
+
+    UUniformGridPanel* GridPanel = Cast<UUniformGridPanel>(InventoryWidget->GetWidgetFromName(TEXT("UniformGridPanel")));
+    if (!GridPanel) return;
+
+    int32 ItemAmount = GetItemAmount(ItemTag);
+
+    UUhuItemWidget* ItemWidget = CreateWidget<UUhuItemWidget>(InventoryWidget->GetWorld(), UUhuItemWidget::StaticClass());
+    if (ItemWidget)
+    {
+        UDataTable* DataTable = InventorySystem ? InventorySystem->GetDataTable() : nullptr;
+        ItemWidget->InitializeWidget(ItemTag, DataTable);
+        ItemWidget->UpdateAmountDisplay(ItemAmount);
+
+        UUniformGridSlot* GridSlot = GridPanel->AddChildToUniformGrid(ItemWidget);
+        if (GridSlot)
+        {
+            // Setze die Position im Grid, z.B. Zeile und Spalte
+            GridSlot->SetRow(0); // Beispielwert, anpassen nach Bedarf
+            GridSlot->SetColumn(0); // Beispielwert, anpassen nach Bedarf
+        }
+    }
 }

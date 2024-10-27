@@ -1,23 +1,31 @@
-﻿#pragma once
+#pragma once
 
 #include "CoreMinimal.h"
-#include "GameplayTagContainer.h"
-#include "Blueprint/UserWidget.h"
+#include "UI/Widgets/UhuUserWidget.h"
 #include "UhuInventoryWidget.generated.h"
 
 UCLASS()
-class DRONESCAPE_API UUhuInventoryWidget : public UUserWidget
+class DRONESCAPE_API UUhuInventoryWidget : public UUhuUserWidget
 {
 	GENERATED_BODY()
 
 public:
-	// Fügt ein Item-Widget hinzu
-	void AddItemWidget(const FGameplayTag& ItemTag, const FString& ItemName, UTexture2D* ItemIcon, int32 ItemAmount);
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	void InitializeInventoryWidget();
+
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	void UpdateInventoryDisplay();
 
 protected:
-	virtual void NativeConstruct() override;
+	UFUNCTION(BlueprintImplementableEvent, Category = "Inventory")
+	void OnInitializeInventoryWidget();
 
-private:
+	UFUNCTION(BlueprintImplementableEvent, Category = "Inventory")
+	void OnUpdateInventoryDisplay();
+
 	UPROPERTY(meta = (BindWidget))
-	class UVerticalBox* ItemList; // Container für Item-Widgets
+	class UVerticalBox* InventoryContainer;
+
+	UPROPERTY(EditAnywhere, Category = "Inventory")
+	TSubclassOf<UUserWidget> ItemWidgetClass;
 };
