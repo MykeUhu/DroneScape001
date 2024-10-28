@@ -4,7 +4,6 @@
 #include "Engine/LocalPlayer.h"
 #include "Blueprint/UserWidget.h"
 #include "Characters/UhuBaseCharacter.h"
-#include "UI/Widgets/UhuInventoryWidget.h"
 
 AUhuPlayerController::AUhuPlayerController()
 {
@@ -23,24 +22,6 @@ void AUhuPlayerController::BeginPlay()
 
     FInputModeGameOnly InputModeData;
     SetInputMode(InputModeData);
-
-    if (InventoryWidgetClass)
-    {
-        InventoryWidget = CreateWidget<UUhuInventoryWidget>(this, InventoryWidgetClass);
-        if (InventoryWidget)
-        {
-            InventoryWidget->AddToViewport();
-            InventoryWidget->InitializeInventoryWidget();
-        }
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("InventoryWidget konnte nicht erstellt werden!"));
-        }
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("InventoryWidgetClass ist nicht gesetzt!"));
-    }
 }
 
 void AUhuPlayerController::SetupInputComponent()

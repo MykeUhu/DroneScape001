@@ -1,36 +1,19 @@
 #include "Characters/UhuPlayerCharacter.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/UhuAbilitySystemComponent.h"
-#include "Components/UhuInventoryComponent.h"
 #include "Controllers/UhuPlayerController.h"
 #include "Game/UhuPlayerState.h"
 #include "UI/HUD/UhuHud.h"
 
-AUhuPlayerCharacter::AUhuPlayerCharacter() : InventoryComponent(nullptr)
+AUhuPlayerCharacter::AUhuPlayerCharacter()
 {
-    // Konstruktor-Logik...
+    
 }
 
 void AUhuPlayerCharacter::BeginPlay()
 {
     Super::BeginPlay();
     
-    if (InventoryComponentClass)
-    {
-        InventoryComponent = NewObject<UUhuInventoryComponent>(this, InventoryComponentClass);
-        if (InventoryComponent)
-        {
-            InventoryComponent->RegisterComponent();
-        }
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("InventoryComponent konnte nicht instanziiert werden!"));
-        }
-    }
-    else
-    {
-        UE_LOG(LogTemp, Warning, TEXT("InventoryComponentClass ist nicht gesetzt!"));
-    }
 }
 
 void AUhuPlayerCharacter::PossessedBy(AController* NewController)

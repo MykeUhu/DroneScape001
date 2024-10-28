@@ -8,27 +8,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a482cabb-5801-4cb7-9e95-369d10ea330d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Components/UhuInventoryComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Components/UhuItemComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Inventory/UhuInventoryItemData.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Inventory/UhuInventorySystem.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Components/UhuInventoryComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Components/UhuItemComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Inventory/UhuInventoryItemData.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Inventory/UhuInventorySystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/BP_UhuDrone.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/BP_UhuDrone.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Controllers/BP_PlayerController.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Game/GameMode/BP_GameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/GameMode/BP_GameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Items/ABaseAndData/BP_BaseItem.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Items/Food/BP_Maggots.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Inventory/UhuBaseItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Inventory/UhuBaseItem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Inventory/UhuInventorySystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Inventory/UhuInventorySystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Game/Controllers/BP_PlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Game/Controllers/BP_PlayerController.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Items/ABaseAndData/BP_AAABaseItem.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Items/ABaseAndData/ST_ItemDataStruct.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Items/Food/BP_ItemMaggot.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/Blank.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Blank.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/Overlay/WBP_Overlay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/Overlay/WBP_Overlay.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/Widgets/Inventory/WBP_UhuInventoryWidget.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/Widgets/Items/WBP_ItemWidget.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/Widgets/Menu/WBP_MainMenu.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/Widgets/WBP_ChatWindow.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Inventory/UhuBaseItem.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Inventory/UhuInventorySystem.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Actor/Inventory/UhuItemData.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuBaseCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuPlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Components/UhuInventoryComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Components/UhuInventoryComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Components/UhuInventoryComponent.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/Widgets/UhuChatWindow.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/Widgets/UhuInventoryWidget.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/Widgets/UhuItemWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/UI/Widgets/UhuItemWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Inventory/UhuBaseItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Inventory/UhuBaseItem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Inventory/UhuInventorySystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Inventory/UhuInventorySystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/Widgets/UhuItemWidget.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Inventory/UhuBaseItem.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Inventory/UhuInventorySystem.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Actor/Inventory/UhuItemData.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuBaseCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Components/UhuInventoryComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Components/UhuInventoryComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Components/UhuInventoryComponent.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuChatWindow.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuInventoryWidget.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuItemWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuItemWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuItemWidget.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +70,22 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" root0="FORCE_HIGHLIGHTING" />
@@ -189,7 +224,8 @@
       <workItem from="1729757250421" duration="239000" />
       <workItem from="1729757517968" duration="20146000" />
       <workItem from="1729790232304" duration="9815000" />
-      <workItem from="1729833180308" duration="80019000" />
+      <workItem from="1729833180308" duration="118005000" />
+      <workItem from="1730121076711" duration="8592000" />
     </task>
     <servers />
   </component>
@@ -204,6 +240,7 @@
     <watches-manager>
       <configuration name="Uproject">
         <watch expression="Args" />
+        <watch expression="Data" />
       </configuration>
     </watches-manager>
   </component>
