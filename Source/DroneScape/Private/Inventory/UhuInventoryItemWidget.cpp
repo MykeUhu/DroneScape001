@@ -28,16 +28,9 @@ void UUhuInventoryItemWidget::SetItemAmount(int32 Amount)
 	}
 }
 
-void UUhuInventoryItemWidget::InitializeItem(UDataTable* DataTable, FName RowName)
+void UUhuInventoryItemWidget::InitializeItemWidget(const FInventoryItemData& ItemData)
 {
-	InventoryDataTable = DataTable;
-	if (!InventoryDataTable) return;
-
-	FInventoryItemData* ItemData = InventoryDataTable->FindRow<FInventoryItemData>(RowName, TEXT(""));
-	if (ItemData)
-	{
-		SetItemImage(ItemData->ItemImage);
-		SetItemName(FText::FromString(ItemData->ItemName.ToString()));
-		SetItemAmount(ItemData->Amount);
-	}
+	SetItemImage(ItemData.ItemImage);
+	SetItemName(FText::FromString(ItemData.ItemName.ToString()));
+	SetItemAmount(ItemData.Amount);
 }

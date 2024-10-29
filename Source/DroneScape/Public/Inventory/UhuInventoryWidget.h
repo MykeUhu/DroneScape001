@@ -2,8 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "UhuInventoryItemData.h"
 #include "UhuInventoryWidget.generated.h"
+
+class UDataTable;
+struct FInventoryItemData;
 
 UCLASS()
 class DRONESCAPE_API UUhuInventoryWidget : public UUserWidget
@@ -15,9 +17,18 @@ public:
 	void InitializeInventory(UDataTable* DataTable);
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	TArray<FInventoryItemData> GetInventoryItems();
+	void UpdateInventory();
 
 private:
+	UPROPERTY(meta = (BindWidget))
+	class UUniformGridPanel* InventoryGrid;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory", meta = (AllowPrivateAccess = "true"))
 	UDataTable* InventoryDataTable;
+
+	TArray<FInventoryItemData> GetInventoryItems() const;
+	void PopulateInventoryGrid(const TArray<FInventoryItemData>& InventoryItems);
+
+	UPROPERTY(EditAnywhere, Category = "Inventory")
+	int32 Columns = 4;
 };

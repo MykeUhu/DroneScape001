@@ -5,10 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "Abilities/Data/UhuAttributeInfo.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Items/Data/UhuItemInfo.h"
 #include "UhuBaseCharacter.generated.h"
 
+struct FUhuItemInformation;
 class UGameplayEffect;
 class UAbilitySystemComponent;
 class UAttributeSet;
@@ -63,4 +66,24 @@ private:
 	// ViewSettings
 	UPROPERTY(Replicated)  // Damit diese Variable repliziert wird
 	bool bIsThirdPersonView;  // Flag für die aktuelle Kameraperspektive
+
+	// Developement only!!!
+	UPROPERTY(EditDefaultsOnly, Category = "Developement")
+	UAttributeInfo* AttributeInfo; // Referenz zur UAttributeInfo
+
+	UFUNCTION(BlueprintCallable, Category = "Developement")
+	void ExportAttributeInfoToCSV();
+
+	UFUNCTION(BlueprintCallable, Category = "Developement")
+	void ImportAttributeInfoFromCSV();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Developement")
+	UItemInfo* ItemInfo;
+	
+	UFUNCTION(BlueprintCallable, Category = "Developement")
+	void ExportItemInfoToCSV();
+
+	UFUNCTION(BlueprintCallable, Category = "Developement")
+	void ImportItemInfoFromCSV();
+		
 };

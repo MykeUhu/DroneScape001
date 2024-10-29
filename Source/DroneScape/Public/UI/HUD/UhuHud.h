@@ -8,7 +8,7 @@
 
 class UAttributeSet;
 class UAbilitySystemComponent;
-class UOverlayWidgetController;
+class UUhuOverlayWidgetController;
 class UUhuUserWidget;
 struct FWidgetControllerParams;
 
@@ -21,7 +21,7 @@ class DRONESCAPE_API AUhuHud : public AHUD
 	GENERATED_BODY()
 public:
 
-	UOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WCParams);
+	UUhuOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WCParams);
 
 	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS);
 
@@ -39,9 +39,9 @@ private:
 
 	// Overlay Widget Controller reference
 	UPROPERTY()
-	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
+	TObjectPtr<UUhuOverlayWidgetController> OverlayWidgetController;
 
 	// Blueprint class of the Overlay Widget Controller
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
+	TSubclassOf<UUhuOverlayWidgetController> OverlayWidgetControllerClass;
 };

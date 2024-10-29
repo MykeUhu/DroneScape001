@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UhuInventoryItemData.h"
 #include "Blueprint/UserWidget.h"
 #include "UhuInventoryItemWidget.generated.h"
 
@@ -20,7 +21,7 @@ public:
 	void SetItemAmount(int32 Amount);
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	void InitializeItem(UDataTable* DataTable, FName RowName);
+	void InitializeItemWidget(const FInventoryItemData& ItemData);
 
 private:
 	UPROPERTY(meta = (BindWidget))
@@ -31,7 +32,4 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* ItemAmount;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory", meta = (AllowPrivateAccess = "true"))
-	UDataTable* InventoryDataTable;
 };

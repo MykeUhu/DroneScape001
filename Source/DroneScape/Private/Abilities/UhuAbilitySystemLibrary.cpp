@@ -1,11 +1,11 @@
 ﻿
 #include "Abilities/UhuAbilitySystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
-#include "UI/Widgets/UhuWidgetController.h"
+#include "UI/WidgetController/UhuWidgetController.h"
 #include "Game/UhuPlayerState.h"
 #include "UI/HUD/UhuHUD.h"
 
-UOverlayWidgetController* UUhuAbilitySystemLibrary::GetOverlayWidgetController(const UObject* WorldContextObject)
+UUhuOverlayWidgetController* UUhuAbilitySystemLibrary::GetOverlayWidgetController(const UObject* WorldContextObject)
 {
 	if (APlayerController* PC = UGameplayStatics::GetPlayerController(WorldContextObject, 0))
 	{

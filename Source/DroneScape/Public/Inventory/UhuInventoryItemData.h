@@ -63,4 +63,5 @@ struct FInventoryItemData : public FTableRowBase
     // Row Name des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
     FName RowName;
+    
 };

@@ -7,92 +7,147 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Misc/FileHelper.h"
+#include "Engine/DataTable.h"
 
 AUhuBaseCharacter::AUhuBaseCharacter()
 {
-	// Enable replication for multiplayer
-	bReplicates = true;
-	
-	// Kamerarotation wird von der Controller-Eingabe gesteuert
-	bUseControllerRotationPitch = true;
-	bUseControllerRotationYaw = true;
-	bUseControllerRotationRoll = false;
+    // Enable replication for multiplayer
+    bReplicates = true;
+    
+    // Kamerarotation wird von der Controller-Eingabe gesteuert
+    bUseControllerRotationPitch = true;
+    bUseControllerRotationYaw = true;
+    bUseControllerRotationRoll = false;
 
-	GetCharacterMovement()->bOrientRotationToMovement = false;
+    GetCharacterMovement()->bOrientRotationToMovement = false;
 
-	// SpringArm erstellen und auf Länge 0 für First-Person setzen
-	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
-	SpringArm->SetupAttachment(RootComponent);
-	SpringArm->TargetArmLength = 0.0f;  // Länge 0 für First-Person
-	SpringArm->bUsePawnControlRotation = true;  // Kamera dreht sich mit dem Controller
+    // SpringArm erstellen und auf Länge 0 für First-Person setzen
+    SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+    SpringArm->SetupAttachment(RootComponent);
+    SpringArm->TargetArmLength = 0.0f;  // Länge 0 für First-Person
+    SpringArm->bUsePawnControlRotation = true;  // Kamera dreht sich mit dem Controller
 
-	// Kamera an den SpringArm anhängen
-	FirstPersonCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
-	FirstPersonCamera->SetupAttachment(SpringArm);  // An den SpringArm heften
-	FirstPersonCamera->bUsePawnControlRotation = true;  // Kamera dreht sich mit dem Controller
+    // Kamera an den SpringArm anhängen
+    FirstPersonCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
+    FirstPersonCamera->SetupAttachment(SpringArm);  // An den SpringArm heften
+    FirstPersonCamera->bUsePawnControlRotation = true;  // Kamera dreht sich mit dem Controller
 
-	// Initial in First-Person-Ansicht
-	bIsThirdPersonView = false;
+    // Initial in First-Person-Ansicht
+    bIsThirdPersonView = false;
 }
 
 void AUhuBaseCharacter::BeginPlay()
 {
-	Super::BeginPlay();
+    Super::BeginPlay();
 
-	// Starten in der First-Person-Ansicht
-	SpringArm->TargetArmLength = 0.0f;
+    // Starten in der First-Person-Ansicht
+    SpringArm->TargetArmLength = 0.0f;
 }
 
 void AUhuBaseCharacter::SwitchCamera()
 {
-	if (SpringArm)
-	{
-		if (bIsThirdPersonView)
-		{
-			// Wechsel zur First-Person-Ansicht
-			SpringArm->TargetArmLength = 0.0f;  // Kamera nah am Charakter
-			bIsThirdPersonView = false;
-		}
-		else
-		{
-			// Wechsel zur Third-Person-Ansicht
-			SpringArm->TargetArmLength = 300.0f;  // Setze eine sinnvolle Länge für Third-Person
-			bIsThirdPersonView = true;
-		}
-	}
+    if (SpringArm)
+    {
+        if (bIsThirdPersonView)
+        {
+            // Wechsel zur First-Person-Ansicht
+            SpringArm->TargetArmLength = 0.0f;  // Kamera nah am Charakter
+            bIsThirdPersonView = false;
+        }
+        else
+        {
+            // Wechsel zur Third-Person-Ansicht
+            SpringArm->TargetArmLength = 300.0f;  // Setze eine sinnvolle Länge für Third-Person
+            bIsThirdPersonView = true;
+        }
+    }
 }
 
 // Replikation setup
 void AUhuBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	// Replicate the camera view state to other clients
-	DOREPLIFETIME(AUhuBaseCharacter, bIsThirdPersonView);
+    // Replicate the camera view state to other clients
+    DOREPLIFETIME(AUhuBaseCharacter, bIsThirdPersonView);
 }
 
 UAbilitySystemComponent* AUhuBaseCharacter::GetAbilitySystemComponent() const
 {
-	return AbilitySystemComponent;
+    return AbilitySystemComponent;
 }
+
 void AUhuBaseCharacter::InitAbilityActorInfo()
 {
 }
 
 void AUhuBaseCharacter::ApplyEffectToSelf(const TSubclassOf<UGameplayEffect>& GameplayEffectClass, float Level) const
 {
-	check(IsValid(GetAbilitySystemComponent()));
-	check(GameplayEffectClass);
-	FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
-	ContextHandle.AddSourceObject(this);
-	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
-	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
+    check(IsValid(GetAbilitySystemComponent()));
+    check(GameplayEffectClass);
+    FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+    ContextHandle.AddSourceObject(this);
+    const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
+    GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
 }
 
 void AUhuBaseCharacter::InitializeDefaultAttributes() const
 {
-	// if Attributes depend on ohter be careful with order to initialize
-	ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
-	ApplyEffectToSelf(DefaultNutrientAttributes, 1.f);
-	ApplyEffectToSelf(DefaultDroneAttributes, 1.f);
+    // if Attributes depend on others be careful with order to initialize
+    ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
+    ApplyEffectToSelf(DefaultNutrientAttributes, 1.f);
+    ApplyEffectToSelf(DefaultDroneAttributes, 1.f);
+}
+
+// Entwicklertool: Exportiere Item-Info in CSV
+void AUhuBaseCharacter::ExportItemInfoToCSV()
+{
+    if (ItemInfo)
+    {
+        ItemInfo->ExportItemInfoToCSV(TEXT("Development/ExportImport/Items.csv"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("ItemInfo is null"));
+    }
+}
+
+// Entwicklertool: Importiere Item-Info aus CSV
+void AUhuBaseCharacter::ImportItemInfoFromCSV()
+{
+    if (ItemInfo)
+    {
+        ItemInfo->ImportItemInfoFromCSV(TEXT("Development/ExportImport/Items.csv"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("ItemInfo is null"));
+    }
+}
+
+// Entwicklertool: Exportiere Attribut-Info in CSV
+void AUhuBaseCharacter::ExportAttributeInfoToCSV()
+{
+    if (AttributeInfo)
+    {
+        AttributeInfo->ExportAttributesToCSV(TEXT("Development/ExportImport/Attributes.csv"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("AttributeInfo is null"));
+    }
+}
+
+// Entwicklertool: Importiere Attribut-Info aus CSV
+void AUhuBaseCharacter::ImportAttributeInfoFromCSV()
+{
+    if (AttributeInfo)
+    {
+        AttributeInfo->ImportAttributesFromCSV(TEXT("Development/ExportImport/Attributes.csv"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("AttributeInfo is null"));
+    }
 }

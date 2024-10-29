@@ -3,13 +3,13 @@
 #include "UI/HUD/UhuHud.h"
 
 #include "UI/Widgets/UhuUserWidget.h"
-#include "UI/Widgets/OverlayWidgetController.h"
+#include "UI/WidgetController/UhuOverlayWidgetController.h"
 
-UOverlayWidgetController* AUhuHud::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
+UUhuOverlayWidgetController* AUhuHud::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
 {
 	if (OverlayWidgetController == nullptr)
 	{
-		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
+		OverlayWidgetController = NewObject<UUhuOverlayWidgetController>(this, OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 		OverlayWidgetController->BindCallbacksToDependencies();
 	}
@@ -25,7 +25,7 @@ void AUhuHud::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyste
 	OverlayWidget = Cast<UUhuUserWidget>(Widget);
 	
 	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
-	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
+	UUhuOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
 
 	OverlayWidget->SetWidgetController(WidgetController);
 	WidgetController->BroadcastInitialValues();
