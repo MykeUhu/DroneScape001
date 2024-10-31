@@ -1,7 +1,6 @@
 // Copyright by MykeUhu
 
 #include "Characters/UhuBaseCharacter.h"
-
 #include "AbilitySystemComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -14,7 +13,7 @@ AUhuBaseCharacter::AUhuBaseCharacter()
 {
     // Enable replication for multiplayer
     bReplicates = true;
-    
+
     // Kamerarotation wird von der Controller-Eingabe gesteuert
     bUseControllerRotationPitch = true;
     bUseControllerRotationYaw = true;
@@ -49,18 +48,9 @@ void AUhuBaseCharacter::SwitchCamera()
 {
     if (SpringArm)
     {
-        if (bIsThirdPersonView)
-        {
-            // Wechsel zur First-Person-Ansicht
-            SpringArm->TargetArmLength = 0.0f;  // Kamera nah am Charakter
-            bIsThirdPersonView = false;
-        }
-        else
-        {
-            // Wechsel zur Third-Person-Ansicht
-            SpringArm->TargetArmLength = 300.0f;  // Setze eine sinnvolle Länge für Third-Person
-            bIsThirdPersonView = true;
-        }
+        // Wechsel zwischen First-Person- und Third-Person-Ansicht
+        bIsThirdPersonView = !bIsThirdPersonView;
+        SpringArm->TargetArmLength = bIsThirdPersonView ? 300.0f : 0.0f; // Setze die Länge des SpringArms
     }
 }
 
@@ -80,12 +70,13 @@ UAbilitySystemComponent* AUhuBaseCharacter::GetAbilitySystemComponent() const
 
 void AUhuBaseCharacter::InitAbilityActorInfo()
 {
+    // Hier können weitere Initialisierungen vorgenommen werden
 }
 
 void AUhuBaseCharacter::ApplyEffectToSelf(const TSubclassOf<UGameplayEffect>& GameplayEffectClass, float Level) const
 {
-    check(IsValid(GetAbilitySystemComponent()));
-    check(GameplayEffectClass);
+    check(IsValid(GetAbilitySystemComponent())); // Überprüfe, ob das AbilitySystemComponent gültig ist
+    check(GameplayEffectClass); // Überprüfe, ob die GameplayEffect-Klasse gültig ist
     FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
     ContextHandle.AddSourceObject(this);
     const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
@@ -94,7 +85,7 @@ void AUhuBaseCharacter::ApplyEffectToSelf(const TSubclassOf<UGameplayEffect>& Ga
 
 void AUhuBaseCharacter::InitializeDefaultAttributes() const
 {
-    // if Attributes depend on others be careful with order to initialize
+    // Wenn Attribute von anderen abhängen, vorsichtig mit der Reihenfolge
     ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
     ApplyEffectToSelf(DefaultNutrientAttributes, 1.f);
     ApplyEffectToSelf(DefaultDroneAttributes, 1.f);
@@ -106,10 +97,11 @@ void AUhuBaseCharacter::ExportItemInfoToCSV()
     if (ItemInfo)
     {
         ItemInfo->ExportItemInfoToCSV(TEXT("Development/ExportImport/Items.csv"));
+        UE_LOG(LogTemp, Log, TEXT("Item information exported successfully to CSV."));
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("ItemInfo is null"));
+        UE_LOG(LogTemp, Warning, TEXT("ItemInfo is null. Cannot export."));
     }
 }
 
@@ -119,10 +111,11 @@ void AUhuBaseCharacter::ImportItemInfoFromCSV()
     if (ItemInfo)
     {
         ItemInfo->ImportItemInfoFromCSV(TEXT("Development/ExportImport/Items.csv"));
+        UE_LOG(LogTemp, Log, TEXT("Item information imported successfully from CSV."));
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("ItemInfo is null"));
+        UE_LOG(LogTemp, Warning, TEXT("ItemInfo is null. Cannot import."));
     }
 }
 
@@ -132,10 +125,11 @@ void AUhuBaseCharacter::ExportAttributeInfoToCSV()
     if (AttributeInfo)
     {
         AttributeInfo->ExportAttributesToCSV(TEXT("Development/ExportImport/Attributes.csv"));
+        UE_LOG(LogTemp, Log, TEXT("Attribute information exported successfully to CSV."));
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("AttributeInfo is null"));
+        UE_LOG(LogTemp, Warning, TEXT("AttributeInfo is null. Cannot export."));
     }
 }
 
@@ -145,9 +139,11 @@ void AUhuBaseCharacter::ImportAttributeInfoFromCSV()
     if (AttributeInfo)
     {
         AttributeInfo->ImportAttributesFromCSV(TEXT("Development/ExportImport/Attributes.csv"));
+        UE_LOG(LogTemp, Log, TEXT("Attribute information imported successfully from CSV."));
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("AttributeInfo is null"));
+        UE_LOG(LogTemp, Warning, TEXT("AttributeInfo is null. Cannot import."));
     }
 }
+

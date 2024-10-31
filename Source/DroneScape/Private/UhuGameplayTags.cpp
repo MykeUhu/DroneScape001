@@ -10,9 +10,15 @@ FUhuGameplayTags FUhuGameplayTags::GameplayTags;
 void FUhuGameplayTags::InitializeNativeGameplayTags()
 {
 	GameplayTags.DockingStation = FGameplayTag::RequestGameplayTag(FName("Tag.DockingStation"));
-/*
-	 * Vital Attributes
-	 */
+
+	/* Dangerous Tag!!! */
+	GameplayTags.UhuStandardTag = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Uhu.Standard.Tag"),
+		FString("Represents a standard tag for Uhu.")
+		);
+
+	/* Vital Attributes	 */
+	
 	GameplayTags.Attributes_Vital_Health = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Attributes.Vital.Health"),
 		FString("Represents the health of the character.")
@@ -71,6 +77,16 @@ void FUhuGameplayTags::InitializeNativeGameplayTags()
 	GameplayTags.Attributes_Vital_StressResistance = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Attributes.Vital.StressResistance"),
 		FString("Represents the stress resistance of the character.")
+		);
+	
+	GameplayTags.Attributes_Vital_Health = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Attributes.Vital.Health"),
+		FString("Represents the health of the character.")
+		);
+
+	GameplayTags.Attributes_Vital_None = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Attributes.Vital.None"),
+		FString("Represents no vital attributes.")
 		);
 
 
@@ -155,6 +171,11 @@ void FUhuGameplayTags::InitializeNativeGameplayTags()
 	GameplayTags.Attributes_Nutrient_MaxNutritionLevel = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Attributes.Nutrient.MaxNutritionLevel"),
 		FString("Represents the maximum overall nutrition level.")
+		);
+
+	GameplayTags.Attributes_Nutrient_None = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Attributes.Nutrient.None"),
+		FString("Represents no nutrient attributes.")
 		);
 
 
@@ -261,10 +282,39 @@ void FUhuGameplayTags::InitializeNativeGameplayTags()
 	    FString("Represents the maximum noise level of the drone.")
 	);
 
+	GameplayTags.Attributes_Drone_None = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Attributes.Drone.None"),
+		FString("Represents no drone attributes.")
+		);
 
-	/*
-	 * Drone Technical Attributes
-	 */
+	
+	/* Items */
+	GameplayTags.Items_Rarity_Common = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Items.Rarity.Common"),
+		FString("Represents common items.")
+		);
+	
+	GameplayTags.Items_Rarity_Uncommon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Items.Rarity.Uncommon"),
+		FString("Represents uncommon items.")
+		);
+	
+	GameplayTags.Items_Rarity_Rare = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Items.Rarity.Rare"),
+		FString("Represents rare items.")
+		);
+	
+	GameplayTags.Items_Rarity_Epic = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Items.Rarity.Epic"),
+		FString("Represents epic items.")
+		);
+	
+	GameplayTags.Items_Rarity_Legendary = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Items.Rarity.Legendary"),
+		FString("Represents legendary items.")
+		);
+	
+	/* Food */
 	GameplayTags.Items_Food_BittenApple = UGameplayTagsManager::Get().AddNativeGameplayTag(
 	    FName("Items.Food.BittenApple"),
 	    FString("Anbissener Apfel")

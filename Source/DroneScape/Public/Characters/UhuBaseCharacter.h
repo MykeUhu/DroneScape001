@@ -1,5 +1,4 @@
 // Copyright by MykeUhu
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +7,7 @@
 #include "Abilities/Data/UhuAttributeInfo.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Engine/DataTable.h"
 #include "Items/Data/UhuItemInfo.h"
 #include "UhuBaseCharacter.generated.h"
 
@@ -19,71 +19,69 @@ class UAttributeSet;
 UCLASS()
 class DRONESCAPE_API AUhuBaseCharacter : public ACharacter, public IAbilitySystemInterface
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	AUhuBaseCharacter();
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
+    AUhuBaseCharacter();
+    virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+    UAttributeSet* GetAttributeSet() const { return AttributeSet; }
+    virtual void BeginPlay() override;
 
-	virtual void BeginPlay() override;
-
-	// Kameraperspektive wechseln
-	void SwitchCamera();
+    // Kameraperspektive wechseln
+    void SwitchCamera();
 
 protected:
-	// Replikation für die Kameraperspektive
-	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    // Replikation für die Kameraperspektive
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-	UPROPERTY()
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+    UPROPERTY()
+    TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
-	UPROPERTY()
-	TObjectPtr<UAttributeSet> AttributeSet;
+    UPROPERTY()
+    TObjectPtr<UAttributeSet> AttributeSet;
 
-	virtual void InitAbilityActorInfo();
+    virtual void InitAbilityActorInfo();
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
-	TSubclassOf<UGameplayEffect> DefaultVitalAttributes;
+    UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+    TSubclassOf<UGameplayEffect> DefaultVitalAttributes;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
-	TSubclassOf<UGameplayEffect> DefaultNutrientAttributes;
+    UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+    TSubclassOf<UGameplayEffect> DefaultNutrientAttributes;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
-	TSubclassOf<UGameplayEffect> DefaultDroneAttributes;
+    UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+    TSubclassOf<UGameplayEffect> DefaultDroneAttributes;
 
-	void ApplyEffectToSelf(const TSubclassOf<UGameplayEffect>& GameplayEffectClass, float Level) const;
-	void InitializeDefaultAttributes() const;
+    void ApplyEffectToSelf(const TSubclassOf<UGameplayEffect>& GameplayEffectClass, float Level) const;
+    void InitializeDefaultAttributes() const;
 
 private:
-	// Kamera-Komponenten
-	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	TObjectPtr<UCameraComponent> FirstPersonCamera;
+    // Kamera-Komponenten
+    UPROPERTY(VisibleAnywhere, Category = "Camera")
+    TObjectPtr<UCameraComponent> FirstPersonCamera;
 
-	UPROPERTY(VisibleAnywhere, Category = "Camera")
-	TObjectPtr<USpringArmComponent> SpringArm;  // SpringArm für Third-Person
+    UPROPERTY(VisibleAnywhere, Category = "Camera")
+    TObjectPtr<USpringArmComponent> SpringArm;  // SpringArm für Third-Person
 
-	// ViewSettings
-	UPROPERTY(Replicated)  // Damit diese Variable repliziert wird
-	bool bIsThirdPersonView;  // Flag für die aktuelle Kameraperspektive
+    // ViewSettings
+    UPROPERTY(Replicated)
+    bool bIsThirdPersonView;  // Flag für die aktuelle Kameraperspektive
 
-	// Developement only!!!
-	UPROPERTY(EditDefaultsOnly, Category = "Developement")
-	UAttributeInfo* AttributeInfo; // Referenz zur UAttributeInfo
+    // Development only!!!
+    UPROPERTY(EditDefaultsOnly, Category = "Development")
+    UAttributeInfo* AttributeInfo;
 
-	UFUNCTION(BlueprintCallable, Category = "Developement")
-	void ExportAttributeInfoToCSV();
+    UFUNCTION(BlueprintCallable, Category = "Development")
+    void ExportAttributeInfoToCSV();
 
-	UFUNCTION(BlueprintCallable, Category = "Developement")
-	void ImportAttributeInfoFromCSV();
+    UFUNCTION(BlueprintCallable, Category = "Development")
+    void ImportAttributeInfoFromCSV();
 
-	UPROPERTY(EditDefaultsOnly, Category = "Developement")
-	UItemInfo* ItemInfo;
-	
-	UFUNCTION(BlueprintCallable, Category = "Developement")
-	void ExportItemInfoToCSV();
+    UPROPERTY(EditDefaultsOnly, Category = "Development")
+    UItemInfo* ItemInfo;
 
-	UFUNCTION(BlueprintCallable, Category = "Developement")
-	void ImportItemInfoFromCSV();
-		
+    UFUNCTION(BlueprintCallable, Category = "Development")
+    void ExportItemInfoToCSV();
+
+    UFUNCTION(BlueprintCallable, Category = "Development")
+    void ImportItemInfoFromCSV();
 };

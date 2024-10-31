@@ -15,6 +15,9 @@ struct FUhuGameplayTags
 public:
 	static const FUhuGameplayTags& Get() { return GameplayTags; }
 	static void InitializeNativeGameplayTags();
+
+	/* Dangerous Tag! */
+	FGameplayTag UhuStandardTag;
 	
 	FGameplayTag DockingStation;
 	
@@ -31,6 +34,7 @@ public:
 	FGameplayTag Attributes_Vital_MaxMentalHealth;
 	FGameplayTag Attributes_Vital_FoodPoisoningChance;
 	FGameplayTag Attributes_Vital_StressResistance;
+	FGameplayTag Attributes_Vital_None;
 
 
 	/* Nutrients Attributes */
@@ -50,6 +54,7 @@ public:
 	FGameplayTag Attributes_Nutrient_MaxCarbohydrates;
 	FGameplayTag Attributes_Nutrient_NutritionLevel;
 	FGameplayTag Attributes_Nutrient_MaxNutritionLevel;
+	FGameplayTag Attributes_Nutrient_None;
 
 
 	/* Drone Technical Attributes */
@@ -73,7 +78,14 @@ public:
 	FGameplayTag Attributes_Drone_MaxSignalRange;
 	FGameplayTag Attributes_Drone_NoiseLevel;
 	FGameplayTag Attributes_Drone_MaxNoiseLevel;
+	FGameplayTag Attributes_Drone_None;
 
+	/* Items */
+	FGameplayTag Items_Rarity_Common;
+	FGameplayTag Items_Rarity_Uncommon;
+	FGameplayTag Items_Rarity_Rare;
+	FGameplayTag Items_Rarity_Epic;
+	FGameplayTag Items_Rarity_Legendary;
 
 	 /* Food Items */
     FGameplayTag Items_Food_BittenApple;            // Anbissener Apfel

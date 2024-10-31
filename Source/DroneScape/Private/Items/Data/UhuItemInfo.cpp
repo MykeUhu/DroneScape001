@@ -1,5 +1,4 @@
 #include "Items/Data/UhuItemInfo.h"
-
 #include "GameplayTagContainer.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
@@ -9,13 +8,12 @@
 void UItemInfo::ExportItemInfoToCSV(const FString& FilePath)
 {
     FString CSVData;
-    CSVData.Append(TEXT("ItemName,ItemTag,ItemImagePath,ItemDescription,ItemWeight,ItemRarity,ItemDurability,GameplayEffects,NutrientValues,VitalValues,TechnicalValues,RowName\n"));
+    CSVData.Append(TEXT("ItemName,ItemTag,RarityTag,ItemImage,ItemDescription,ItemWeight,ItemDurability,NutrientValues,VitalValues,TechnicalValues\n"));
 
     for (const FUhuItemInfo& Info : ItemInformation)
     {
-        FString GameplayEffectsStr = FString::JoinBy(Info.GameplayEffects, TEXT("|"), [](const FGameplayTag& Tag) {
-            return Tag.GetTagName().ToString();
-        });
+        // Den Pfad des ItemImage-Assets speichern
+        FString ItemImagePath = Info.ItemImage ? *Info.ItemImage->GetPathName() : TEXT("None");
 
         FString NutrientValuesStr;
         for (const auto& Pair : Info.NutrientValues)
@@ -35,19 +33,17 @@ void UItemInfo::ExportItemInfoToCSV(const FString& FilePath)
             TechnicalValuesStr.Append(FString::Printf(TEXT("%s:%f|"), *Pair.Key.GetTagName().ToString(), Pair.Value));
         }
 
-        CSVData.Append(FString::Printf(TEXT("%s,%s,%s,%s,%f,%s,%d,%s,%s,%s,%s,%s\n"),
+        CSVData.Append(FString::Printf(TEXT("%s,%s,%s,%s,%s,%f,%d,%s,%s,%s\n"),
             *Info.ItemName.ToString(),
-            *Info.ItemTag.GetTagName().ToString(),
-            *Info.ItemImagePath,
+            *Info.ItemTag.ToString(),
+            *Info.RarityTag.ToString(),
+            *ItemImagePath,
             *Info.ItemDescription,
             Info.ItemWeight,
-            *Info.ItemRarity,
             Info.ItemDurability,
-            *GameplayEffectsStr,
             *NutrientValuesStr,
             *VitalValuesStr,
-            *TechnicalValuesStr,
-            *Info.RowName.ToString()));
+            *TechnicalValuesStr));
     }
 
     FString FullPath = FPaths::ProjectDir() + FilePath;
@@ -55,6 +51,7 @@ void UItemInfo::ExportItemInfoToCSV(const FString& FilePath)
 }
 
 // Importiert die Item-Informationen aus einer CSV-Datei
+
 void UItemInfo::ImportItemInfoFromCSV(const FString& FilePath)
 {
     FString CSVData;
@@ -62,78 +59,82 @@ void UItemInfo::ImportItemInfoFromCSV(const FString& FilePath)
 
     if (FFileHelper::LoadFileToString(CSVData, *FullPath))
     {
+        UE_LOG(LogTemp, Log, TEXT("CSV-Datei erfolgreich geladen: %s"), *FullPath);
+
         TArray<FString> Rows;
         CSVData.ParseIntoArray(Rows, TEXT("\n"), true);
 
         ItemInformation.Empty();
 
-        for (int32 i = 1; i < Rows.Num(); ++i) // Beginne bei 1, um die Kopfzeile zu überspringen
+        for (int32 i = 1; i < Rows.Num(); ++i) // Start from 1 to skip header row
         {
             TArray<FString> Columns;
             Rows[i].ParseIntoArray(Columns, TEXT(","), true);
 
-            if (Columns.Num() == 12) // Überprüfen, ob alle Spalten vorhanden sind
+            if (Columns.Num() == 10)
             {
-                FUhuItemInfo Info;
-                Info.ItemName = FName(*Columns[0]);
-                Info.ItemTag = FGameplayTag::RequestGameplayTag(FName(*Columns[1]));
-                Info.ItemImagePath = Columns[2]; // Wir nehmen an, dass dies ein Pfad ist
-                Info.ItemDescription = Columns[3];
-                Info.ItemWeight = FCString::Atof(*Columns[4]);
-                Info.ItemRarity = Columns[5];
-                Info.ItemDurability = FCString::Atoi(*Columns[6]);
+                FUhuItemInfo Item;
+                Item.ItemName = FName(*Columns[0]);
+                Item.ItemTag = FGameplayTag::RequestGameplayTag(FName(*Columns[1]));
+                Item.RarityTag = FGameplayTag::RequestGameplayTag(FName(*Columns[2]));
+                Item.ItemImage = LoadObject<UTexture2D>(nullptr, *Columns[3]);
+                Item.ItemDescription = Columns[4];
+                Item.ItemWeight = FCString::Atof(*Columns[5]);
+                Item.ItemDurability = FCString::Atoi(*Columns[6]);
 
-                // GameplayEffects
-                TArray<FString> EffectTags;
-                Columns[7].ParseIntoArray(EffectTags, TEXT("|"), true);
-                for (const FString& TagString : EffectTags)
+                TArray<FString> NutrientValuesArray;
+                Columns[7].ParseIntoArray(NutrientValuesArray, TEXT("|"), true);
+                for (const FString& Nutrient : NutrientValuesArray)
                 {
-                    Info.GameplayEffects.Add(FGameplayTag::RequestGameplayTag(FName(*TagString)));
-                }
-
-                // NutrientValues
-                TArray<FString> Nutrients;
-                Columns[8].ParseIntoArray(Nutrients, TEXT("|"), true);
-                for (const FString& Nutrient : Nutrients)
-                {
-                    TArray<FString> KeyValue;
-                    Nutrient.ParseIntoArray(KeyValue, TEXT(":"), true);
-                    if (KeyValue.Num() == 2)
+                    if (!Nutrient.IsEmpty())
                     {
-                        Info.NutrientValues.Add(FGameplayTag::RequestGameplayTag(FName(*KeyValue[0])), FCString::Atof(*KeyValue[1]));
+                        TArray<FString> Pair;
+                        Nutrient.ParseIntoArray(Pair, TEXT(":"), true);
+                        if (Pair.Num() == 2)
+                        {
+                            Item.NutrientValues.Add(FGameplayTag::RequestGameplayTag(FName(*Pair[0])), FCString::Atof(*Pair[1]));
+                        }
                     }
                 }
 
-                // VitalValues
-                TArray<FString> Vitals;
-                Columns[9].ParseIntoArray(Vitals, TEXT("|"), true);
-                for (const FString& Vital : Vitals)
+                TArray<FString> VitalValuesArray;
+                Columns[8].ParseIntoArray(VitalValuesArray, TEXT("|"), true);
+                for (const FString& Vital : VitalValuesArray)
                 {
-                    TArray<FString> KeyValue;
-                    Vital.ParseIntoArray(KeyValue, TEXT(":"), true);
-                    if (KeyValue.Num() == 2)
+                    if (!Vital.IsEmpty())
                     {
-                        Info.VitalValues.Add(FGameplayTag::RequestGameplayTag(FName(*KeyValue[0])), FCString::Atof(*KeyValue[1]));
+                        TArray<FString> Pair;
+                        Vital.ParseIntoArray(Pair, TEXT(":"), true);
+                        if (Pair.Num() == 2)
+                        {
+                            Item.VitalValues.Add(FGameplayTag::RequestGameplayTag(FName(*Pair[0])), FCString::Atof(*Pair[1]));
+                        }
                     }
                 }
 
-                // TechnicalValues
-                TArray<FString> Technicals;
-                Columns[10].ParseIntoArray(Technicals, TEXT("|"), true);
-                for (const FString& Technical : Technicals)
+                TArray<FString> TechnicalValuesArray;
+                Columns[9].ParseIntoArray(TechnicalValuesArray, TEXT("|"), true);
+                for (const FString& Technical : TechnicalValuesArray)
                 {
-                    TArray<FString> KeyValue;
-                    Technical.ParseIntoArray(KeyValue, TEXT(":"), true);
-                    if (KeyValue.Num() == 2)
+                    if (!Technical.IsEmpty())
                     {
-                        Info.TechnicalValues.Add(FGameplayTag::RequestGameplayTag(FName(*KeyValue[0])), FCString::Atof(*KeyValue[1]));
+                        TArray<FString> Pair;
+                        Technical.ParseIntoArray(Pair, TEXT(":"), true);
+                        if (Pair.Num() == 2)
+                        {
+                            Item.TechnicalValues.Add(FGameplayTag::RequestGameplayTag(FName(*Pair[0])), FCString::Atof(*Pair[1]));
+                        }
                     }
                 }
 
-                Info.RowName = FName(*Columns[11]);
+                ItemInformation.Add(Item);
 
-                ItemInformation.Add(Info);
+                UE_LOG(LogTemp, Log, TEXT("Item erfolgreich importiert: %s"), *Item.ItemName.ToString());
             }
         }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("Fehler beim Laden der CSV-Datei: %s"), *FullPath);
     }
 }

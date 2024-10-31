@@ -1,0 +1,4 @@
+---,ItemName,ItemTag,Amount,StorageTag,ItemImage,ItemDescription,ItemWeight,ItemRarity,ItemDurability,GameplayEffects,NutrientValues,VitalValues,RowName
+Items.Food.Maggot,"Maggot","(TagName=""Items.Food.Maggots"")","1","(TagName="""")","/Script/Engine.Texture2D'/Engine/EngineResources/AICON-Green.AICON-Green'","Just a Maggot","0.000000","","100","","()","()","None"
+Items.Food,"Other Item","(TagName=""Items.Food"")","0","(TagName="""")","/Script/Engine.Texture2D'/Engine/EngineResources/AICON-Red.AICON-Red'","asdfsadf","0.000000","","100","","()","()","None"
+Items.Food.Sepp,"Other","(TagName="""")","12","(TagName="""")","/Script/Engine.Texture2D'/Engine/MobileResources/HUD/AnalogHat.AnalogHat'","","0.000000","","100","","()","()","Items.Food.Other"

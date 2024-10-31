@@ -12,48 +12,49 @@ struct FUhuItemInfo : public FTableRowBase
 {
     GENERATED_BODY()
 
+    // Name des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     FName ItemName;
 
+    // Tag zur Identifizierung des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     FGameplayTag ItemTag;
 
+    // Tag zur Identifizierung der Rarity
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
+    FGameplayTag RarityTag;
+
+    // Bild des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     UTexture2D* ItemImage = nullptr; // Standardwert setzen
 
+    // Beschreibung des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
-    FString ItemImagePath; // Bildpfad
+    FString ItemDescription = "Items with empty fields prevent the import of all items!";
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
-    FString ItemDescription;
-
+    // Gewicht des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     float ItemWeight = 0.0f; // Standardwert setzen
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
-    FString ItemRarity;
-
+    // Haltbarkeit des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     int32 ItemDurability = 100; // Standardwert setzen
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
-    TArray<FGameplayTag> GameplayEffects;
-
+    // Nährstoffwerte des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     TMap<FGameplayTag, float> NutrientValues;
 
+    // Vitalwerte des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     TMap<FGameplayTag, float> VitalValues;
 
+    // Technikwerte des Items
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     TMap<FGameplayTag, float> TechnicalValues;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
-    FName RowName;
 };
 
 UCLASS()
-class DRONESCAPE_API UItemInfo : public UDataAsset // Umbenannt von UUhuItemInfo zu UItemInfo
+class DRONESCAPE_API UItemInfo : public UDataAsset 
 {
     GENERATED_BODY()
 
