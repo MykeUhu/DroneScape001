@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "UI/WidgetController/UhuWidgetController.h"
 #include "UhuHud.generated.h"
 
+class UUhuInventoryWidgetController;
 class UAttributeSet;
 class UAbilitySystemComponent;
 class UUhuOverlayWidgetController;
@@ -22,6 +24,7 @@ class DRONESCAPE_API AUhuHud : public AHUD
 public:
 
 	UUhuOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WCParams);
+	UUhuInventoryWidgetController* GetInventoryMenuWidgetController(const FWidgetControllerParams& WCParams);
 
 	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS);
 
@@ -44,4 +47,17 @@ private:
 	// Blueprint class of the Overlay Widget Controller
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUhuOverlayWidgetController> OverlayWidgetControllerClass;
+	
+	UPROPERTY()
+	TObjectPtr<UUhuInventoryWidgetController> UhuInventoryMenuWidgetController;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUhuInventoryWidgetController> InventoryMenuWidgetControllerClass;
+
+	UPROPERTY()
+	TObjectPtr<UUhuUserWidget> TabletMenuWidget;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUhuUserWidget> TabletMenuWidgetClass;
+	
 };

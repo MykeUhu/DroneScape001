@@ -4,6 +4,24 @@
 #include "Misc/Paths.h"
 #include "Engine/Engine.h" // Für Debug-Logs
 
+
+FUhuItemInfo UItemInfo::FindAttributeForTag(const FGameplayTag& ItemTag, bool bLogNotFound) const
+{
+    for (const FUhuItemInfo& Info : ItemInformation)
+    {
+        if (Info.ItemTag.MatchesTagExact(ItemTag))
+        {
+            return Info;
+        }
+    }
+    if (bLogNotFound)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Can't find Info for ItemTag [%s] on ItemInfo [%s]."), *ItemTag.ToString(), *GetNameSafe(this));
+    }
+    return FUhuItemInfo();
+
+}
+
 // Exportiert die Item-Informationen in eine CSV-Datei
 void UItemInfo::ExportItemInfoToCSV(const FString& FilePath)
 {

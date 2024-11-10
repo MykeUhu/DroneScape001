@@ -59,6 +59,8 @@ class DRONESCAPE_API UItemInfo : public UDataAsset
     GENERATED_BODY()
 
 public:
+    FUhuItemInfo FindAttributeForTag(const FGameplayTag& ItemTag, bool bLogNotFound) const;
+    
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ItemInfo")
     TArray<FUhuItemInfo> ItemInformation;
 

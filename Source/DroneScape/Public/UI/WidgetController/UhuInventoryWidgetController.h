@@ -16,7 +16,6 @@ class DRONESCAPE_API UUhuInventoryWidgetController : public UUhuWidgetController
 	GENERATED_BODY()
 
 public:
-	void SetWidgetControllerParams(APlayerController* InPlayerController, UDataTable* InInventoryDataTable);
 	void BindCallbacksToDependencies();
 	void BroadcastInitialValues();
 

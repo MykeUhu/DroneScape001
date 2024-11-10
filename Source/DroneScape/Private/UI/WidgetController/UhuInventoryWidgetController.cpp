@@ -5,10 +5,12 @@
 
 void UUhuInventoryWidgetController::BindCallbacksToDependencies()
 {
-	Super::BindCallbacksToDependencies();
+	// nur wenn wir in UhuWidgetController was überschreiben wollen
+	//Super::BindCallbacksToDependencies();
 }
 
 void UUhuInventoryWidgetController::BroadcastInitialValues()
 {
-	Super::BroadcastInitialValues();
+	// nur wenn wir in UhuWidgetController was überschreiben wollen
+	//Super::BroadcastInitialValues();
 }
