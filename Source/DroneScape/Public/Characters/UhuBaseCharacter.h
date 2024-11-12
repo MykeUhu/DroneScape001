@@ -1,4 +1,3 @@
-// Copyright by MykeUhu
 #pragma once
 
 #include "CoreMinimal.h"
@@ -29,6 +28,7 @@ public:
 
     // Kameraperspektive wechseln
     void SwitchCamera();
+    
 
 protected:
     // Replikation für die Kameraperspektive
@@ -65,7 +65,7 @@ private:
     // ViewSettings
     UPROPERTY(Replicated)
     bool bIsThirdPersonView;  // Flag für die aktuelle Kameraperspektive
-
+    
     // Development only!!!
     UPROPERTY(EditDefaultsOnly, Category = "Development")
     UAttributeInfo* AttributeInfo;

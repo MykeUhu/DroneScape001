@@ -10,31 +10,12 @@
     <list default="true" id="a482cabb-5801-4cb7-9e95-369d10ea330d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DroneScape.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Input/IMC_Input.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Input/IMC_Input.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/Overlay/WBP_Overlay.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/Overlay/WBP_Overlay.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/ProgressBar/WBP_CharHealth.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/UI/ProgressBar/WBP_CharHealth.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/Widgets/Inventory/WBP_Inventory.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/UI/Widgets/Inventory/WBP_InventoryItem.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/Blank.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Blank.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Components/UhuInventoryComponent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Components/UhuItemComponent.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Inventory/UhuInventoryItemData.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Inventory/UhuInventoryItemWidget.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Inventory/UhuInventorySystem.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Inventory/UhuInventoryWidget.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Items/Data/UhuItemInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Items/Data/UhuItemInfo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/HUD/UhuHud.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/UI/HUD/UhuHud.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/UI/WidgetController/UhuInventoryWidgetController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/UI/WidgetController/UhuInventoryWidgetController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Components/UhuInventoryComponent.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Components/UhuItemComponent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Inventory/UhuInventoryItemData.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Inventory/UhuInventoryItemWidget.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Inventory/UhuInventorySystem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Inventory/UhuInventoryWidget.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Private/Characters/UhuBaseCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Private/Items/Inventory/UhuInventory.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Characters/UhuBaseCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Items/Data/UhuItemInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/Items/Data/UhuItemInfo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/HUD/UhuHud.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/UI/HUD/UhuHud.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/WidgetController/UhuInventoryWidgetController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/UI/WidgetController/UhuInventoryWidgetController.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuUserWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DroneScape/Public/UI/Widgets/UhuUserWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DroneScape/Public/Items/Inventory/UhuInventory.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,34 +71,7 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/DroneScape/UHT/UhuInventoryComponent.gen.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DroneScape/DroneScape.Build.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DroneScape/Private/Controllers/UhuPlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DroneScape/Public/Controllers/UhuPlayerController.h" root0="FORCE_HIGHLIGHTING" />
@@ -258,7 +212,7 @@
       <workItem from="1730121076711" duration="51477000" />
       <workItem from="1730269083953" duration="35382000" />
       <workItem from="1730715699356" duration="11534000" />
-      <workItem from="1731055999771" duration="6461000" />
+      <workItem from="1731055999771" duration="50738000" />
     </task>
     <servers />
   </component>
@@ -266,6 +220,17 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
@@ -282,7 +247,9 @@
     <watches-manager>
       <configuration name="Uproject">
         <watch expression="Args" />
-        <watch expression="Data" />
+        <watch expression="Data" language="C++" />
+        <watch expression="Args" />
+        <watch expression="DataEnd" />
       </configuration>
     </watches-manager>
   </component>

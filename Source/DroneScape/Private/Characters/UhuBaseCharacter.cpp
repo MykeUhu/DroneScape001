@@ -1,5 +1,3 @@
-// Copyright by MykeUhu
-
 #include "Characters/UhuBaseCharacter.h"
 #include "AbilitySystemComponent.h"
 #include "Camera/CameraComponent.h"
@@ -34,6 +32,7 @@ AUhuBaseCharacter::AUhuBaseCharacter()
 
     // Initial in First-Person-Ansicht
     bIsThirdPersonView = false;
+    
 }
 
 void AUhuBaseCharacter::BeginPlay()
@@ -146,4 +145,5 @@ void AUhuBaseCharacter::ImportAttributeInfoFromCSV()
         UE_LOG(LogTemp, Warning, TEXT("AttributeInfo is null. Cannot import."));
     }
 }
+
 
